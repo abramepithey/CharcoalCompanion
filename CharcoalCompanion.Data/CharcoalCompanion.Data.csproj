@@ -58,11 +58,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202006302156340_FirstInit.cs" />
+    <Compile Include="Migrations\202006302156340_FirstInit.designer.cs">
+      <DependentUpon>202006302156340_FirstInit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Plan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recipe.cs" />
+    <Compile Include="Steps\CharcoalSetup.cs" />
+    <Compile Include="Steps\Cut.cs" />
+    <Compile Include="Steps\Meat.cs" />
+    <Compile Include="Steps\StepTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202006302156340_FirstInit.resx">
+      <DependentUpon>202006302156340_FirstInit.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
