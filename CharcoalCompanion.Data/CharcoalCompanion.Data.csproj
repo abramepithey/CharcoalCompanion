@@ -62,6 +62,14 @@
     <Compile Include="Migrations\202006302156340_FirstInit.designer.cs">
       <DependentUpon>202006302156340_FirstInit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007010027389_secondMigrations.cs" />
+    <Compile Include="Migrations\202007010027389_secondMigrations.designer.cs">
+      <DependentUpon>202007010027389_secondMigrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007010036124_specifiesSteps.cs" />
+    <Compile Include="Migrations\202007010036124_specifiesSteps.designer.cs">
+      <DependentUpon>202007010036124_specifiesSteps.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Plan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,6 +86,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006302156340_FirstInit.resx">
       <DependentUpon>202006302156340_FirstInit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007010027389_secondMigrations.resx">
+      <DependentUpon>202007010027389_secondMigrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007010036124_specifiesSteps.resx">
+      <DependentUpon>202007010036124_specifiesSteps.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

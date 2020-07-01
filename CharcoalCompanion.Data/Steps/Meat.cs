@@ -11,5 +11,11 @@ namespace CharcoalCompanion.Data.Steps
     {
         [Key]
         public int MeatId { get; set; }
+
+        [Display(Name = "Allowed Cuts")]
+        public virtual ICollection<Cut> Cuts { get; set; } = new List<Cut>();
+
+        [Display(Name = "Allowed Charcoal Setups")]
+        public virtual ICollection<CharcoalSetup> CharcoalSetups { get; set; } = new List<CharcoalSetup>();
     }
 }
