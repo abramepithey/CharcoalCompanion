@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CharcoalCompanion.Contracts
 {
-    public interface IPlanServices
+    public interface IPlanService
     {
         //bool CreatePlan(PlanCreate model);
         //bool UpdatePlan(PlanUpdate model);

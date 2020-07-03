@@ -1,0 +1,70 @@
+﻿using CharcoalCompanion.Contracts;
+using CharcoalCompanion.Data;
+using CharcoalCompanion.Data.Steps;
+using CharcoalCompanion.Models.Steps;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Schema;
+
+namespace CharcoalCompanion.Services
+{
+    class StepService : IStepService
+    {
+        public bool CreateStep(StepCreate model)
+        {
+            var entity = new Step()
+            {
+                UserId = _userId,
+                StepType = model.StepType,
+                Name = model.Name,
+                Description = model.Description,
+                ImageLink = model.ImageLink
+            };
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.Steps.Add(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IEnumerable<StepListItem> GetAllSteps()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                // var query
+                throw new NotImplementedException();
+            }
+        }
+
+        public IEnumerable<StepListItem> GetAllOfOneStep()
+        {
+            throw new NotImplementedException();
+        }
+
+        public StepDetail GetStepById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool EditStep(StepUpdate model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteStep(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        private readonly Guid _userId;
+
+        public StepService(Guid userId)
+        {
+            _userId = userId;
+        }
+    }
+}

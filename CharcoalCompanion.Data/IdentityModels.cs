@@ -34,9 +34,7 @@ namespace CharcoalCompanion.Data
         }
 
         public DbSet<Plan> Plans { get; set; }
-        public DbSet<Meat> MeatChoices { get; set; }
-        public DbSet<Cut> CutChoices { get; set; }
-        public DbSet<CharcoalSetup> CharcoalSetupChoices { get; set; }
+        public DbSet<Step> Steps { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -49,6 +47,18 @@ namespace CharcoalCompanion.Data
                 .Configurations
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
+
+            modelBuilder.Entity<Plan>()
+                .HasRequired(p => p.StepOne)
+                .WithMany();
+
+            modelBuilder.Entity<Plan>()
+                .HasRequired(p => p.StepTwo)
+                .WithMany();
+
+            modelBuilder.Entity<Plan>()
+                .HasRequired(p => p.StepThree)
+                .WithMany();
         }
     }
 

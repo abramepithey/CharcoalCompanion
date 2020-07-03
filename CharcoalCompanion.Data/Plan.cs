@@ -16,20 +16,11 @@ namespace CharcoalCompanion.Data
         public int PlanId { get; set; }
         public Guid UserId { get; set; }
 
-        // Step 1
-        [ForeignKey("Meat")]
-        public int MeatId { get; set; }
-        public virtual Meat Meat { get; set; }
+        public virtual Step StepOne { get; set; }
 
-        // Step 2
-        [ForeignKey("Cut")]
-        public int CutId { get; set; }
-        public virtual Cut Cut { get; set; }
+        public virtual Step StepTwo { get; set; }
 
-        // Step 3
-        [ForeignKey("CharcoalSetup")]
-        public int CharcoalSetupId { get; set; }
-        public virtual CharcoalSetup CharcoalSetup { get; set; }
+        public virtual Step StepThree { get; set; }
 
         [DefaultValue(false)]
         public bool IsSaved { get; set; }

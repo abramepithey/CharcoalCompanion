@@ -67,6 +67,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CharcoalCompanion.Data\CharcoalCompanion.Data.csproj">
+      <Project>{F792D153-8861-4EE5-BB7F-5E9FD2DCF4D2}</Project>
+      <Name>CharcoalCompanion.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

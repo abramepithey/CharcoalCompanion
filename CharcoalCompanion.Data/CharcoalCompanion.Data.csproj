@@ -58,47 +58,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202006302156340_FirstInit.cs" />
-    <Compile Include="Migrations\202006302156340_FirstInit.designer.cs">
-      <DependentUpon>202006302156340_FirstInit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007010027389_secondMigrations.cs" />
-    <Compile Include="Migrations\202007010027389_secondMigrations.designer.cs">
-      <DependentUpon>202007010027389_secondMigrations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007010036124_specifiesSteps.cs" />
-    <Compile Include="Migrations\202007010036124_specifiesSteps.designer.cs">
-      <DependentUpon>202007010036124_specifiesSteps.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007031516589_fixesMigration.cs" />
-    <Compile Include="Migrations\202007031516589_fixesMigration.designer.cs">
-      <DependentUpon>202007031516589_fixesMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202007031641044_initCreate.cs" />
+    <Compile Include="Migrations\202007031641044_initCreate.designer.cs">
+      <DependentUpon>202007031641044_initCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Plan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipe.cs" />
-    <Compile Include="Steps\CharcoalSetup.cs" />
-    <Compile Include="Steps\Cut.cs" />
-    <Compile Include="Steps\Meat.cs" />
-    <Compile Include="Steps\StepTemplate.cs" />
+    <Compile Include="Step.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202006302156340_FirstInit.resx">
-      <DependentUpon>202006302156340_FirstInit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007010027389_secondMigrations.resx">
-      <DependentUpon>202007010027389_secondMigrations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007010036124_specifiesSteps.resx">
-      <DependentUpon>202007010036124_specifiesSteps.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007031516589_fixesMigration.resx">
-      <DependentUpon>202007031516589_fixesMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007031641044_initCreate.resx">
+      <DependentUpon>202007031641044_initCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

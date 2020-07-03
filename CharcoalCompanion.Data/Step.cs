@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace CharcoalCompanion.Data.Steps
 {
-    public class StepTemplate
+    public enum StepTypes { Meat = 1, Cut = 2, CharcoalSetup = 3 }
+    public class Step
     {
+        [Key]
+        public int StepId { get; set; }
+
+        [Required]
+        public StepTypes StepType { get; set; }
         [Required]
         [MaxLength(30)]
         public string Name { get; set; }
@@ -20,5 +26,7 @@ namespace CharcoalCompanion.Data.Steps
 
         [DefaultValue(true)]
         public bool IsActive { get; set; }
+
+        public virtual ICollection<Plan> Plans { get; set; }
     }
 }
