@@ -70,6 +70,10 @@
     <Compile Include="Migrations\202007010036124_specifiesSteps.designer.cs">
       <DependentUpon>202007010036124_specifiesSteps.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007031516589_fixesMigration.cs" />
+    <Compile Include="Migrations\202007031516589_fixesMigration.designer.cs">
+      <DependentUpon>202007031516589_fixesMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Plan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007010036124_specifiesSteps.resx">
       <DependentUpon>202007010036124_specifiesSteps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007031516589_fixesMigration.resx">
+      <DependentUpon>202007031516589_fixesMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

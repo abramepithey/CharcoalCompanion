@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CharcoalCompanion.Data.Steps
+namespace CharcoalCompanion.Models.Steps
 {
-    public class StepTemplate
+    public class StepUpdate
     {
-        [Required]
-        [MaxLength(30)]
+        [Display(Name = "Which type of Step:")]
+        public int StepNumberChoice { get; set; }
+        public int StepId { get; set; }
         public string Name { get; set; }
-        public Guid UserId { get; set; }
-        [MaxLength(100)]
         public string Description { get; set; }
         public string ImageLink { get; set; }
-
-        [DefaultValue(true)]
-        public bool IsActive { get; set; }
     }
 }
