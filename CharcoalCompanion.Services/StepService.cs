@@ -35,8 +35,21 @@ namespace CharcoalCompanion.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                // var query
-                throw new NotImplementedException();
+                var query =
+                    ctx
+                        .Steps
+                        .Select(
+                            e =>
+                                new StepListItem
+                                {
+                                    StepId = e.StepId,
+                                    StepType = e.StepType,
+                                    Name = e.Name,
+                                    ImageLink = e.ImageLink
+                                }
+                        );
+
+                return query.ToArray();
             }
         }
 

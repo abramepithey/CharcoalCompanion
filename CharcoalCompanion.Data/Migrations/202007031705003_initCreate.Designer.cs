@@ -13,7 +13,7 @@ namespace CharcoalCompanion.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202007031641044_initCreate"; }
+            get { return "202007031705003_initCreate"; }
         }
         
         string IMigrationMetadata.Source
