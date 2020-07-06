@@ -60,7 +60,22 @@ namespace CharcoalCompanion.Services
 
         public StepDetail GetStepById(int id)
         {
-            throw new NotImplementedException();
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Steps
+                        .Single(e => e.StepId == id);
+                return
+                    new StepDetail
+                    {
+                        StepId = entity.StepId,
+                        StepType = entity.StepType,
+                        Name = entity.Name,
+                        Description = entity.Description,
+                        ImageLink = entity.ImageLink
+                    };
+            }
         }
 
         public bool EditStep(StepUpdate model)

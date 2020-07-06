@@ -49,6 +49,15 @@ namespace CharcoalCompanion.MVC.Controllers
             return View(model);
         }
 
+        // GET: Step/Details/{id}
+        public ActionResult Details(int id)
+        {
+            var svc = CreateStepService();
+            var model = svc.GetStepById(id);
+
+            return View(model);
+        }
+
         private StepService CreateStepService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
