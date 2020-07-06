@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>StepCreate</h4>
         <hr />
@@ -36,6 +36,25 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ImageLink, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ImageLink, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StepType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div>
+                    @Html.RadioButtonFor(model => model.StepType, CharcoalCompanion.Data.Steps.StepTypes.Meat, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.Label(CharcoalCompanion.Data.Steps.StepTypes.Meat.ToString())
+                </div>
+                <div>
+                    @Html.RadioButtonFor(model => model.StepType, CharcoalCompanion.Data.Steps.StepTypes.Cut, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.Label(CharcoalCompanion.Data.Steps.StepTypes.Cut.ToString())
+                </div>
+                <div>
+                    @Html.RadioButtonFor(model => model.StepType, CharcoalCompanion.Data.Steps.StepTypes.CharcoalSetup, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.Label(CharcoalCompanion.Data.Steps.StepTypes.CharcoalSetup.ToString())
+                </div>
+                @Html.ValidationMessageFor(model => model.StepType, "", new { @class = "text-danger" })
             </div>
         </div>
 

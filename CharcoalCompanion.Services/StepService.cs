@@ -11,7 +11,7 @@ using System.Xml.Schema;
 
 namespace CharcoalCompanion.Services
 {
-    class StepService : IStepService
+    public class StepService : IStepService
     {
         public bool CreateStep(StepCreate model)
         {

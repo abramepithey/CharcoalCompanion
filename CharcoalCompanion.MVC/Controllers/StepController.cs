@@ -1,4 +1,6 @@
 ﻿using CharcoalCompanion.Models.Steps;
+using CharcoalCompanion.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.EnterpriseServices.Internal;
@@ -14,7 +16,9 @@ namespace CharcoalCompanion.MVC.Controllers
         // GET: Step
         public ActionResult Index()
         {
-            var model = new StepListItem[0];
+            var service = CreateStepService();
+            var model = service.GetAllSteps();
+
             return View(model);
         }
 
@@ -29,11 +33,27 @@ namespace CharcoalCompanion.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(StepCreate model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-
+                return View(model);
             }
+
+            var service = CreateStepService();
+
+            if (service.CreateStep(model))
+            {
+                TempData["SaveResult"] = "Your note was created.";
+                return RedirectToAction("Index");
+            }
+
             return View(model);
+        }
+
+        private StepService CreateStepService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new StepService(userId);
+            return service;
         }
     }
 }
