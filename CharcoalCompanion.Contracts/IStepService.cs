@@ -13,7 +13,7 @@ namespace CharcoalCompanion.Contracts
         IEnumerable<StepListItem> GetAllSteps();
         IEnumerable<StepListItem> GetAllOfOneStep();
         StepDetail GetStepById(int id);
-        bool EditStep(StepUpdate model);
+        bool UpdateStep(StepUpdate model);
         bool DeleteStep(int id);
     }
 }

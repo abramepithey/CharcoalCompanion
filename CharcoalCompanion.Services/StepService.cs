@@ -78,14 +78,37 @@ namespace CharcoalCompanion.Services
             }
         }
 
-        public bool EditStep(StepUpdate model)
+        public bool UpdateStep(StepUpdate model)
         {
-            throw new NotImplementedException();
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Steps
+                        .Single(e => e.StepId == model.StepId);
+
+                entity.StepType = model.StepType;
+                entity.Name = model.Name;
+                entity.Description = model.Description;
+                entity.ImageLink = model.ImageLink;
+
+                return ctx.SaveChanges() == 1;
+            }
         }
 
         public bool DeleteStep(int id)
         {
-            throw new NotImplementedException();
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Steps
+                        .Single(e => e.StepId == id);
+
+                ctx.Steps.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
         }
 
         private readonly Guid _userId;
