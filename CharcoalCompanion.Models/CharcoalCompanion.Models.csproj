@@ -57,6 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Plans\PlanCreate.cs" />
+    <Compile Include="Plans\PlanDetail.cs" />
+    <Compile Include="Plans\PlanList.cs" />
+    <Compile Include="Plans\PlanUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\StepCreate.cs" />
     <Compile Include="Steps\StepDetail.cs" />
