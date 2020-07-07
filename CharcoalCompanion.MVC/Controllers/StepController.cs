@@ -103,6 +103,7 @@ namespace CharcoalCompanion.MVC.Controllers
         }
 
         // GET: Step/Delete/{id}
+        [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
             var svc = CreateStepService();
@@ -112,13 +113,16 @@ namespace CharcoalCompanion.MVC.Controllers
         }
 
         // POST: Step/Delete/{id}
-        [ActionName("Delete")]
         [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteStep(int id)
         {
             var svc = CreateStepService();
 
             svc.DeleteStep(id);
+
+            TempData["SaveResult"] = "The Step was deleted.";
 
             return RedirectToAction("Index");
         }
