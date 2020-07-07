@@ -58,10 +58,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StepService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CharcoalCompanion.Contracts\CharcoalCompanion.Contracts.csproj">
+      <Project>{ED5CDF66-890C-4B76-AE55-EF2451ECCC54}</Project>
+      <Name>CharcoalCompanion.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CharcoalCompanion.Data\CharcoalCompanion.Data.csproj">
+      <Project>{f792d153-8861-4ee5-bb7f-5e9fd2dcf4d2}</Project>
+      <Name>CharcoalCompanion.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CharcoalCompanion.Models\CharcoalCompanion.Models.csproj">
+      <Project>{C7196DD0-BF26-433B-B0C7-F552B80F88C1}</Project>
+      <Name>CharcoalCompanion.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
