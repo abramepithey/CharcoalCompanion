@@ -345,10 +345,10 @@
     <Content Include="Views\Step\Details.cshtml" />
     <Content Include="Views\Step\Edit.cshtml" />
     <Content Include="Views\Step\Delete.cshtml" />
+    <Content Include="Views\Plan\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Plan\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

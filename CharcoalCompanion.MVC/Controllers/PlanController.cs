@@ -13,7 +13,10 @@ namespace CharcoalCompanion.MVC.Controllers
         // GET: Plan
         public ActionResult Index()
         {
-            return View();
+            var service = CreatePlanService();
+            var model = service.GetAllPlans();
+
+            return View(model);
         }
 
         private PlanService CreatePlanService()
