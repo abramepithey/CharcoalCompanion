@@ -9,8 +9,8 @@ namespace CharcoalCompanion.Models.Plans
 {
     public class PlanDetail
     {
-        public virtual Step Step1 { get; set; }
-        public virtual Step Step2 { get; set; }
-        public virtual Step Step3 { get; set; }
+        public virtual Step StepOne { get; set; }
+        public virtual Step StepTwo { get; set; }
+        public virtual Step StepThree { get; set; }
     }
 }
