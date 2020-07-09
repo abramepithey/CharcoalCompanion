@@ -346,6 +346,7 @@
     <Content Include="Views\Step\Edit.cshtml" />
     <Content Include="Views\Step\Delete.cshtml" />
     <Content Include="Views\Plan\Index.cshtml" />
+    <Content Include="Views\Plan\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

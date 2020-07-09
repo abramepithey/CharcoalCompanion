@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CharcoalCompanion.Models.Plans
 {
-    public class PlanList
+    public class PlanListItem
     {
         public int PlanId { get; set; }
         public string Title { get; set; }

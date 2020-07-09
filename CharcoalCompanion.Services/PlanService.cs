@@ -1,6 +1,7 @@
 ﻿using CharcoalCompanion.Contracts;
 using CharcoalCompanion.Data;
 using CharcoalCompanion.Models.Plans;
+using CharcoalCompanion.Models.Steps;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,37 +14,76 @@ namespace CharcoalCompanion.Services
     {
         public bool CreatePlan(PlanCreate model)
         {
-            var entity = new Plan
-            {
-                UserId = _userId,
-                StepOne = model.StepOne,
-                StepTwo = model.StepTwo,
-                StepThree = model.StepThree
-            };
-
             using (var ctx = new ApplicationDbContext())
             {
+                var stepOne =
+                    ctx
+                        .Steps
+                        .Single(o => o.StepId == model.StepOneId);
+
+                var stepTwo =
+                    ctx
+                        .Steps
+                        .Single(o => o.StepId == model.StepTwoId);
+
+                var stepThree =
+                    ctx
+                        .Steps
+                        .Single(o => o.StepId == model.StepThreeId);
+
+                var entity = new Plan
+                {
+                    UserId = _userId,
+                    StepOne = stepOne,
+                    StepTwo = stepTwo,
+                    StepThree = stepThree
+                };
+
                 ctx.Plans.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public ICollection<PlanList> GetAllPlans()
+        public ICollection<PlanListItem> GetAllPlans()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
                         .Plans
-                        .Where(e => e.IsSaved == true && e.UserId == _userId)
+                        .Where(e => /*e.IsSaved == true &&*/ e.UserId == _userId)
                         .Select(e =>
-                            new PlanList
+                            new PlanListItem
                             {
                                 PlanId = e.PlanId,
                                 Title = e.Title
                             });
 
                 return query.ToArray();
+            }
+        }
+
+        public PlanCreate GetAllStepsToChooseFrom()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var model = new PlanCreate();
+                var query =
+                    ctx
+                        .Steps
+                        .Select(e =>
+                        new StepListItem
+                        {
+                            StepId = e.StepId,
+                            StepType = e.StepType,
+                            Name = e.Name,
+                            ImageLink = e.ImageLink
+                        }).ToList();
+
+                model.Meats = query.Where(q => q.StepType == Data.Steps.StepTypes.Meat).ToList();
+                model.Cuts = query.Where(c => c.StepType == Data.Steps.StepTypes.Cut).ToList();
+                model.CharcoalSetups = query.Where(s => s.StepType == Data.Steps.StepTypes.CharcoalSetup).ToList();
+                return model;
             }
         }
 

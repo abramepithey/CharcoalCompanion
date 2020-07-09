@@ -10,7 +10,7 @@ namespace CharcoalCompanion.Contracts
     public interface IPlanService
     {
         bool CreatePlan(PlanCreate model);
-        ICollection<PlanList> GetAllPlans();
+        ICollection<PlanListItem> GetAllPlans();
         PlanDetail GetPlanById(int id);
         bool UpdatePlan(PlanUpdate model);
         bool DeletePlan(int id);
