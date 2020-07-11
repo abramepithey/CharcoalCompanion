@@ -1,0 +1,72 @@
+﻿@model CharcoalCompanion.Models.Plans.PlanDetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PlanDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlanId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StepOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StepOne.StepType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StepTwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StepTwo.StepType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StepThree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StepThree.StepType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSaved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSaved)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

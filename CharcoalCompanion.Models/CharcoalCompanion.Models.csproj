@@ -58,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Plans\PlanCreate.cs" />
-    <Compile Include="Plans\PlanCreateSteps.cs" />
     <Compile Include="Plans\PlanDetail.cs" />
     <Compile Include="Plans\PlanListItem.cs" />
     <Compile Include="Plans\PlanSave.cs" />

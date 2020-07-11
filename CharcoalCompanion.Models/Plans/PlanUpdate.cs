@@ -1,4 +1,5 @@
 ﻿using CharcoalCompanion.Data.Steps;
+using CharcoalCompanion.Models.Steps;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,6 @@ namespace CharcoalCompanion.Models.Plans
     public class PlanUpdate
     {
         public int PlanId { get; set; }
-        public Guid UserId { get; set; }
         public string Title { get; set; }
 
         public virtual Step StepOne { get; set; }
@@ -19,5 +19,8 @@ namespace CharcoalCompanion.Models.Plans
 
         public virtual Step StepThree { get; set; }
         public bool IsSaved { get; set; }
+        public IEnumerable<StepListItem> Meats { get; set; }
+        public IEnumerable<StepListItem> Cuts { get; set; }
+        public IEnumerable<StepListItem> CharcoalSetups { get; set; }
     }
 }

@@ -40,7 +40,7 @@ namespace CharcoalCompanion.Services
                 };
 
                 ctx.Plans.Add(entity);
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() >= 1;
             }
         }
 
@@ -63,30 +63,6 @@ namespace CharcoalCompanion.Services
             }
         }
 
-        public PlanCreate GetAllStepsToChooseFrom()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var model = new PlanCreate();
-                var query =
-                    ctx
-                        .Steps
-                        .Select(e =>
-                        new StepListItem
-                        {
-                            StepId = e.StepId,
-                            StepType = e.StepType,
-                            Name = e.Name,
-                            ImageLink = e.ImageLink
-                        }).ToList();
-
-                model.Meats = query.Where(q => q.StepType == Data.Steps.StepTypes.Meat).ToList();
-                model.Cuts = query.Where(c => c.StepType == Data.Steps.StepTypes.Cut).ToList();
-                model.CharcoalSetups = query.Where(s => s.StepType == Data.Steps.StepTypes.CharcoalSetup).ToList();
-                return model;
-            }
-        }
-
         public PlanDetail GetPlanById(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -94,14 +70,17 @@ namespace CharcoalCompanion.Services
                 var query =
                     ctx
                         .Plans
-                        .Single(e => e.PlanId == id && e.IsSaved == true);
+                        .Single(e => e.PlanId == id/* && e.IsSaved == true*/);
 
                 return
                     new PlanDetail
                     {
+                        PlanId = query.PlanId,
+                        Title = query.Title,
                         StepOne = query.StepOne,
                         StepTwo = query.StepTwo,
-                        StepThree = query.StepThree
+                        StepThree = query.StepThree,
+                        IsSaved = query.IsSaved
                     };
             }
         }
@@ -123,6 +102,62 @@ namespace CharcoalCompanion.Services
 
                 return ctx.SaveChanges() == 1;
             }
+        }
+
+        public PlanCreate CreateModelLoadSteps(PlanCreate model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Steps
+                        .Select(e =>
+                        new StepListItem
+                        {
+                            StepId = e.StepId,
+                            StepType = e.StepType,
+                            Name = e.Name,
+                            ImageLink = e.ImageLink
+                        }).ToList();
+
+                var Meats = query.Where(m => m.StepType == Data.Steps.StepTypes.Meat).ToList();
+                var Cuts = query.Where(m => m.StepType == Data.Steps.StepTypes.Cut).ToList();
+                var CharcoalSetups = query.Where(m => m.StepType == Data.Steps.StepTypes.CharcoalSetup).ToList();
+
+                model.Meats = Meats;
+                model.Cuts = Cuts;
+                model.CharcoalSetups = CharcoalSetups;
+            }
+
+            return model;
+        }
+
+        public PlanUpdate UpdateModelLoadSteps(PlanUpdate model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Steps
+                        .Select(e =>
+                        new StepListItem
+                        {
+                            StepId = e.StepId,
+                            StepType = e.StepType,
+                            Name = e.Name,
+                            ImageLink = e.ImageLink
+                        }).ToList();
+
+                var Meats = query.Where(m => m.StepType == Data.Steps.StepTypes.Meat).ToList();
+                var Cuts = query.Where(m => m.StepType == Data.Steps.StepTypes.Cut).ToList();
+                var CharcoalSetups = query.Where(m => m.StepType == Data.Steps.StepTypes.CharcoalSetup).ToList();
+
+                model.Meats = Meats;
+                model.Cuts = Cuts;
+                model.CharcoalSetups = CharcoalSetups;
+            }
+
+            return model;
         }
 
         public bool SavePlan(PlanSave model)
@@ -148,11 +183,11 @@ namespace CharcoalCompanion.Services
                 var entity =
                     ctx
                         .Plans
-                        .Single(e => e.PlanId == id && e.UserId == _userId && e.IsSaved == true);
+                        .Single(e => e.PlanId == id/* && e.UserId == _userId*/);
 
-                entity.IsSaved = false;
+                ctx.Plans.Remove(entity);
 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() >= 1;
             }
         }
 
