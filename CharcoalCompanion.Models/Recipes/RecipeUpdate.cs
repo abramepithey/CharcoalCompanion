@@ -10,6 +10,8 @@ namespace CharcoalCompanion.Models.Recipes
 {
     public class RecipeUpdate
     {
+        public int RecipeId { get; set; }
+
         [Required]
         [MaxLength(30, ErrorMessage = "Must be 30 characters or less")]
         public string Name { get; set; }
