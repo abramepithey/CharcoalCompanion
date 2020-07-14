@@ -10,7 +10,7 @@ namespace CharcoalCompanion.Models.Plans
 {
     public class PlanDetail
     {
-        [Display(Name = "Plan Id")]
+        [Display(Name = "Plan ID")]
         public int PlanId { get; set; }
         public string Title { get; set; }
         [Display(Name = "Meat")]

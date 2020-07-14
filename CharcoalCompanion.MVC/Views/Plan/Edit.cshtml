@@ -1,7 +1,7 @@
 ﻿@model CharcoalCompanion.Models.Plans.PlanUpdate
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Plan";
 }
 
 <h2>Edit</h2>
@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>PlanUpdate</h4>
         <hr />
@@ -22,6 +22,48 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StepOneId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @foreach (var step in Model.Meats)
+                {
+                    <div>
+                        @Html.DisplayFor(modelItem => step.Name)
+                        @Html.RadioButtonFor(model => model.StepOneId, step.StepId, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                }
+                @Html.ValidationMessageFor(model => model.StepOneId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StepTwoId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @foreach (var step in Model.Cuts)
+                {
+                    <div>
+                        @Html.Label(step.Name)
+                        @Html.RadioButtonFor(model => model.StepTwoId, step.StepId, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                }
+                @Html.ValidationMessageFor(model => model.StepTwoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StepThreeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @foreach (var step in Model.CharcoalSetups)
+                {
+                    <div>
+                        @Html.Label(step.Name)
+                        @Html.RadioButtonFor(model => model.StepThreeId, step.StepId, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                }
+                @Html.ValidationMessageFor(model => model.StepThreeId, "", new { @class = "text-danger" })
             </div>
         </div>
 

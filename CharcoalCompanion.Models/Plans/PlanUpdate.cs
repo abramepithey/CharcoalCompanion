@@ -2,6 +2,7 @@
 using CharcoalCompanion.Models.Steps;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,15 @@ namespace CharcoalCompanion.Models.Plans
         public int PlanId { get; set; }
         public string Title { get; set; }
 
-        public virtual Step StepOne { get; set; }
+        [Display(Name = "Meat:")]
+        public int StepOneId { get; set; }
 
-        public virtual Step StepTwo { get; set; }
+        [Display(Name = "Cut:")]
+        public int StepTwoId { get; set; }
 
-        public virtual Step StepThree { get; set; }
+        [Display(Name = "Charcoal Setup:")]
+        public int StepThreeId { get; set; }
+
         public bool IsSaved { get; set; }
         public IEnumerable<StepListItem> Meats { get; set; }
         public IEnumerable<StepListItem> Cuts { get; set; }

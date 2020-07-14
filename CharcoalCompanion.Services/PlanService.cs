@@ -94,13 +94,28 @@ namespace CharcoalCompanion.Services
                         .Plans
                         .Single(e => e.PlanId == model.PlanId && e.UserId == _userId);
 
+                var stepOne =
+                    ctx
+                        .Steps
+                        .Single(o => o.StepId == model.StepOneId);
+
+                var stepTwo =
+                    ctx
+                        .Steps
+                        .Single(o => o.StepId == model.StepTwoId);
+
+                var stepThree =
+                    ctx
+                        .Steps
+                        .Single(o => o.StepId == model.StepThreeId);
+
                 entity.IsSaved = model.IsSaved;
                 entity.Title = model.Title;
-                entity.StepOne = model.StepOne;
-                entity.StepTwo = model.StepTwo;
-                entity.StepThree = model.StepThree;
+                entity.StepOne = stepOne;
+                entity.StepTwo = stepTwo;
+                entity.StepThree = stepThree;
 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() >= 1;
             }
         }
 

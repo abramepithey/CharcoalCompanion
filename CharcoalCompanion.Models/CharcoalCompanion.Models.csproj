@@ -63,6 +63,10 @@
     <Compile Include="Plans\PlanSave.cs" />
     <Compile Include="Plans\PlanUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recipes\RecipeCreate.cs" />
+    <Compile Include="Recipes\RecipeDetail.cs" />
+    <Compile Include="Recipes\RecipeListItem.cs" />
+    <Compile Include="Recipes\RecipeUpdate.cs" />
     <Compile Include="Steps\StepCreate.cs" />
     <Compile Include="Steps\StepDetail.cs" />
     <Compile Include="Steps\StepListItem.cs" />

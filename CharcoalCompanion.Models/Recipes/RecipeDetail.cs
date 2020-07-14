@@ -1,29 +1,20 @@
-﻿using System;
+﻿using CharcoalCompanion.Data;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CharcoalCompanion.Data
+namespace CharcoalCompanion.Models.Recipes
 {
-    public class Recipe
+    public class RecipeDetail
     {
-        [Key]
         public int RecipeId { get; set; }
-
         public string Name { get; set; }
-
         public string Directions { get; set; }
-
         public string Ingredients { get; set; }
-
         public string Steps { get; set; }
-
         public virtual Plan Plan { get; set; }
-
-        [DefaultValue(false)]
         public bool IsSaved { get; set; }
     }
 }
