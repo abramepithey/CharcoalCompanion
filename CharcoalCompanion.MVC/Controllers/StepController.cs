@@ -53,8 +53,8 @@ namespace CharcoalCompanion.MVC.Controllers
         // GET: Step/Details/{id}
         public ActionResult Details(int id)
         {
-            var svc = CreateStepService();
-            var model = svc.GetStepById(id);
+            var service = CreateStepService();
+            var model = service.GetStepById(id);
 
             return View(model);
         }
@@ -62,8 +62,8 @@ namespace CharcoalCompanion.MVC.Controllers
         // GET: Step/Edit/{id}
         public ActionResult Edit(int id)
         {
-            var svc = CreateStepService();
-            var detail = svc.GetStepById(id);
+            var service = CreateStepService();
+            var detail = service.GetStepById(id);
             var model =
                 new StepUpdate
                 {
@@ -106,8 +106,8 @@ namespace CharcoalCompanion.MVC.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var svc = CreateStepService();
-            var model = svc.GetStepById(id);
+            var service = CreateStepService();
+            var model = service.GetStepById(id);
 
             return View(model);
         }
@@ -118,9 +118,9 @@ namespace CharcoalCompanion.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteStep(int id)
         {
-            var svc = CreateStepService();
+            var service = CreateStepService();
 
-            svc.DeleteStep(id);
+            service.DeleteStep(id);
 
             TempData["SaveResult"] = "The Step was deleted.";
 

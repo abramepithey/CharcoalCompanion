@@ -12,17 +12,18 @@ namespace CharcoalCompanion.Data
     {
         [Key]
         public int RecipeId { get; set; }
-        [Required]
-        [MaxLength(500)]
+
+        public Guid UserId { get; set; }
+
+        public string Name { get; set; }
+
         public string Directions { get; set; }
 
-        [Required]
-        [MaxLength(500)]
         public string Ingredients { get; set; }
 
-        [Required]
-        [MaxLength(500)]
         public string Steps { get; set; }
+
+        public virtual Plan Plan { get; set; }
 
         [DefaultValue(false)]
         public bool IsSaved { get; set; }

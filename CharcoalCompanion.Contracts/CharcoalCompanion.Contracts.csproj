@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPlanService.cs" />
+    <Compile Include="IRecipeService.cs" />
     <Compile Include="IStepService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,0 +1,66 @@
+﻿@model CharcoalCompanion.Models.Plans.PlanDetail
+
+@{
+    ViewBag.Title = "Plan Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PlanDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlanId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StepOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StepOne.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StepTwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StepTwo.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StepThree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StepThree.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSaved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSaved)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PlanId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

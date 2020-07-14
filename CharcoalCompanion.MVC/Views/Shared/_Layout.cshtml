@@ -3,41 +3,43 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Charcoal Companion", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            @Html.ActionLink("Charcoal Companion", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="navbar-collapse collapse" id="navbarCollapse">
+                <ul class="nav navbar-nav mr-auto">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Steps", "Index", "Step")</li>
+                        <li class="nav-item">@Html.ActionLink("Steps", "Index", "Step", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Plans", "Index", "Plan", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Recipes", "Index", "Recipe", null, new { @class = "nav-link" })</li>
                     }
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="nav-item dropdown">
+                        @Html.ActionLink("About", "About", "Home", null, htmlAttributes: new { @class = "nav-link dropdown-toggle", id = "navbarDropdownMenuLink", data_toggle = "dropdown", aria_haspopup = "true", aria_expanded = "false" })
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            @Html.ActionLink("About", "About", "Home", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "dropdown-item" })
+                        </div>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content pt-md-3 pt-2">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Charcoal Champion</p>
         </footer>
     </div>
 
