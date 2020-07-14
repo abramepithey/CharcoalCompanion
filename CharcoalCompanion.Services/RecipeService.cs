@@ -1,4 +1,5 @@
 ﻿using CharcoalCompanion.Contracts;
+using CharcoalCompanion.Data;
 using CharcoalCompanion.Models.Recipes;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,21 @@ namespace CharcoalCompanion.Services
 
         public IEnumerable<RecipeListItem> GetAllRecipes()
         {
-            throw new NotImplementedException();
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Recipes
+                        .Where(e => e.UserId == _userId)
+                        .Select(e =>
+                            new RecipeListItem
+                            {
+                                RecipeId = e.RecipeId,
+                                Name = e.Name
+                            });
+
+                return query.ToArray();
+            }
         }
 
         public RecipeDetail GetRecipeById(int id)

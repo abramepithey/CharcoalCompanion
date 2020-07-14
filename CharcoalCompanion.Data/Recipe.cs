@@ -13,6 +13,8 @@ namespace CharcoalCompanion.Data
         [Key]
         public int RecipeId { get; set; }
 
+        public Guid UserId { get; set; }
+
         public string Name { get; set; }
 
         public string Directions { get; set; }
