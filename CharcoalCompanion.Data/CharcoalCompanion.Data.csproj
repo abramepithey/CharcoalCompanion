@@ -66,6 +66,10 @@
     <Compile Include="Migrations\202007080210517_updatesPlans.designer.cs">
       <DependentUpon>202007080210517_updatesPlans.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007140313408_addsRecipes.cs" />
+    <Compile Include="Migrations\202007140313408_addsRecipes.designer.cs">
+      <DependentUpon>202007140313408_addsRecipes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Plan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,6 +86,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007080210517_updatesPlans.resx">
       <DependentUpon>202007080210517_updatesPlans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007140313408_addsRecipes.resx">
+      <DependentUpon>202007140313408_addsRecipes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

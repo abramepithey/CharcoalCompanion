@@ -25,5 +25,7 @@ namespace CharcoalCompanion.Data
 
         [DefaultValue(false)]
         public bool IsSaved { get; set; }
+
+        public virtual ICollection<Recipe> Recipes { get; set; }
     }
 }
