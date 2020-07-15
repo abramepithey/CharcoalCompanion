@@ -12,63 +12,50 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>StepCreate</h4>
+        <h4>Create a Step!</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-group form-row">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-group form-row">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control form-control-full", rows = "5" })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImageLink, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-group form-row">
+            @Html.LabelFor(model => model.ImageLink, htmlAttributes: new { @class = "col-form-label col-sm-2" })
+            <div class="col-sm-10">
                 @Html.EditorFor(model => model.ImageLink, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ImageLink, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.StepType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div>
-                    @Html.RadioButtonFor(model => model.StepType, CharcoalCompanion.Data.Steps.StepTypes.Meat, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.Label(CharcoalCompanion.Data.Steps.StepTypes.Meat.ToString())
-                </div>
-                <div>
-                    @Html.RadioButtonFor(model => model.StepType, CharcoalCompanion.Data.Steps.StepTypes.Cut, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.Label(CharcoalCompanion.Data.Steps.StepTypes.Cut.ToString())
-                </div>
-                <div>
-                    @Html.RadioButtonFor(model => model.StepType, CharcoalCompanion.Data.Steps.StepTypes.CharcoalSetup, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.Label(CharcoalCompanion.Data.Steps.StepTypes.CharcoalSetup.ToString())
-                </div>
+        <div class="form-group form-row">
+            @Html.LabelFor(model => model.StepType, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                @foreach (var type in Enum.GetValues(typeof(CharcoalCompanion.Data.Steps.StepTypes)))
+                {
+                    <div class="form-check">
+                        @Html.RadioButtonFor(model => model.StepType, type, new { htmlAttributes = new { @class = "form-control", id = type } })
+                        @Html.Label(type.ToString(), new { @class = "form-check-label", @for = type })
+                    </div>
+                }
                 @Html.ValidationMessageFor(model => model.StepType, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.StepType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(t => t.StepType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StepType, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-md-offset-2 col-sm-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </div>
     </div>
