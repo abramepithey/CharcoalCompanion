@@ -27,10 +27,18 @@ namespace CharcoalCompanion.MVC.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var service = CreatePlanService();
-            var model = new PlanCreate();
-            service.CreateModelLoadSteps(model);
-            return View(model);
+            try
+            {
+                var service = CreatePlanService();
+                var model = new PlanCreate();
+                service.CreateModelLoadSteps(model);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                TempData["NeedSteps"] = "A Plan cannot be made if there are not at least one of each step.";
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Plan/Create
@@ -92,7 +100,12 @@ namespace CharcoalCompanion.MVC.Controllers
             }
             catch (InvalidOperationException)
             {
-                TempData["NoResult"] = "The Step could not be found.";
+                TempData["NoResult"] = "The Plan could not be found.";
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                TempData["NeedSteps"] = "A Plan cannot be made if there are not at least one of each step.";
                 return RedirectToAction("Index");
             }
         }

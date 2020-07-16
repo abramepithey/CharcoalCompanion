@@ -11,11 +11,16 @@ namespace CharcoalCompanion.Models.Plans
 {
     public class PlanCreate
     {
-        [Display(Name = "Meat:")]
+        [Required]
+        [Display(Name = "Meat")]
         public int StepOneId { get; set; }
-        [Display(Name = "Cut:")]
+
+        [Required]
+        [Display(Name = "Cut")]
         public int StepTwoId { get; set; }
-        [Display(Name = "Charcoal Setup:")]
+
+        [Required]
+        [Display(Name = "Charcoal Setup")]
         public int StepThreeId { get; set; }
         public IEnumerable<StepListItem> Meats { get; set; }
         public IEnumerable<StepListItem> Cuts { get; set; }

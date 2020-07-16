@@ -126,6 +126,7 @@ namespace CharcoalCompanion.Services
                 var query =
                     ctx
                         .Steps
+                        .Where(e => e.IsSaved == true)
                         .Select(e =>
                         new StepListItem
                         {
@@ -138,6 +139,11 @@ namespace CharcoalCompanion.Services
                 var Meats = query.Where(m => m.StepType == Data.Steps.StepTypes.Meat).ToList();
                 var Cuts = query.Where(m => m.StepType == Data.Steps.StepTypes.Cut).ToList();
                 var CharcoalSetups = query.Where(m => m.StepType == Data.Steps.StepTypes.CharcoalSetup).ToList();
+
+                if (Meats.Count == 0 || Cuts.Count == 0 || CharcoalSetups.Count == 0)
+                {
+                    throw new Exception();
+                }
 
                 model.Meats = Meats;
                 model.Cuts = Cuts;
@@ -154,6 +160,7 @@ namespace CharcoalCompanion.Services
                 var query =
                     ctx
                         .Steps
+                        .Where(e => e.IsSaved == true)
                         .Select(e =>
                         new StepListItem
                         {
@@ -166,6 +173,11 @@ namespace CharcoalCompanion.Services
                 var Meats = query.Where(m => m.StepType == Data.Steps.StepTypes.Meat).ToList();
                 var Cuts = query.Where(m => m.StepType == Data.Steps.StepTypes.Cut).ToList();
                 var CharcoalSetups = query.Where(m => m.StepType == Data.Steps.StepTypes.CharcoalSetup).ToList();
+
+                if (Meats.Count == 0 || Cuts.Count == 0 || CharcoalSetups.Count == 0)
+                {
+                    throw new Exception();
+                }
 
                 model.Meats = Meats;
                 model.Cuts = Cuts;
