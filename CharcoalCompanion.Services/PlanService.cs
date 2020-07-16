@@ -51,7 +51,7 @@ namespace CharcoalCompanion.Services
                 var query =
                     ctx
                         .Plans
-                        .Where(e => /*e.IsSaved == true &&*/ e.UserId == _userId)
+                        .Where(e => e.IsSaved == true && e.UserId == _userId)
                         .Select(e =>
                             new PlanListItem
                             {
@@ -70,7 +70,7 @@ namespace CharcoalCompanion.Services
                 var query =
                     ctx
                         .Plans
-                        .Single(e => e.PlanId == id/* && e.IsSaved == true*/);
+                        .Single(e => e.PlanId == id && e.IsSaved == true);
 
                 return
                     new PlanDetail
@@ -175,7 +175,7 @@ namespace CharcoalCompanion.Services
             return model;
         }
 
-        public bool SavePlan(PlanSave model)
+        public bool FavoritePlan(PlanSave model)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -198,11 +198,11 @@ namespace CharcoalCompanion.Services
                 var entity =
                     ctx
                         .Plans
-                        .Single(e => e.PlanId == id/* && e.UserId == _userId*/);
+                        .Single(e => e.PlanId == id && e.UserId == _userId);
 
-                ctx.Plans.Remove(entity);
+                entity.IsSaved = false;
 
-                return ctx.SaveChanges() >= 1;
+                return ctx.SaveChanges() == 1;
             }
         }
 

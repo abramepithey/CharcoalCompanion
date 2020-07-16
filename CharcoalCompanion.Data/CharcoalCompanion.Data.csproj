@@ -74,6 +74,10 @@
     <Compile Include="Migrations\202007141804319_fixesNavigations.designer.cs">
       <DependentUpon>202007141804319_fixesNavigations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007152337572_overhaulDelete.cs" />
+    <Compile Include="Migrations\202007152337572_overhaulDelete.designer.cs">
+      <DependentUpon>202007152337572_overhaulDelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Plan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007141804319_fixesNavigations.resx">
       <DependentUpon>202007141804319_fixesNavigations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007152337572_overhaulDelete.resx">
+      <DependentUpon>202007152337572_overhaulDelete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -58,27 +58,43 @@ namespace CharcoalCompanion.MVC.Controllers
         public ActionResult Details(int id)
         {
             var service = CreatePlanService();
-            var model = service.GetPlanById(id);
+            try
+            {
+                var model = service.GetPlanById(id);
 
-            return View(model);
+                return View(model);
+            }
+            catch (InvalidOperationException)
+            {
+                TempData["NoResult"] = "The Step could not be found.";
+                return RedirectToAction("Index");
+            }
         }
 
         // GET: Plan/Edit/{id}
         public ActionResult Edit(int id)
         {
             var service = CreatePlanService();
-            var detail = service.GetPlanById(id);
-            var model =
-                new PlanUpdate
-                {
-                    PlanId = detail.PlanId,
-                    Title = detail.Title,
-                    StepOneId = detail.StepOne.StepId,
-                    StepTwoId = detail.StepTwo.StepId,
-                    StepThreeId = detail.StepThree.StepId,
-                    IsSaved = detail.IsSaved
-                };
-            return View(service.UpdateModelLoadSteps(model));
+            try
+            {
+                var detail = service.GetPlanById(id);
+                var model =
+                    new PlanUpdate
+                    {
+                        PlanId = detail.PlanId,
+                        Title = detail.Title,
+                        StepOneId = detail.StepOne.StepId,
+                        StepTwoId = detail.StepTwo.StepId,
+                        StepThreeId = detail.StepThree.StepId,
+                        IsSaved = detail.IsSaved
+                    };
+                return View(service.UpdateModelLoadSteps(model));
+            }
+            catch (InvalidOperationException)
+            {
+                TempData["NoResult"] = "The Step could not be found.";
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Plan/Edit/{id}
@@ -112,13 +128,21 @@ namespace CharcoalCompanion.MVC.Controllers
         public ActionResult Delete(int id)
         {
             var service = CreatePlanService();
-            var model = service.GetPlanById(id);
+            try
+            {
+                var model = service.GetPlanById(id);
 
-            return View(model);
+                return View(model);
+            }
+            catch (InvalidOperationException)
+            {
+                TempData["NoResult"] = "The Step could not be found.";
+                return RedirectToAction("Index");
+            }
         }
 
-        // POST: Plan/Delete/{id}
-        [HttpPost]
+        // PATCH: Plan/Delete/{id}
+        [HttpPatch]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeletePlan(int id)

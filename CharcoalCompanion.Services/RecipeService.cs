@@ -37,7 +37,7 @@ namespace CharcoalCompanion.Services
                 var query =
                     ctx
                         .Recipes
-                        .Where(e => e.UserId == _userId)
+                        .Where(e => e.UserId == _userId && e.IsSaved == true)
                         .Select(e =>
                             new RecipeListItem
                             {
@@ -56,7 +56,7 @@ namespace CharcoalCompanion.Services
                 var entity =
                     ctx
                         .Recipes
-                        .Single(e => e.RecipeId == id && e.UserId == _userId);
+                        .Single(e => e.RecipeId == id && e.UserId == _userId && e.IsSaved == true);
 
                 return
                     new RecipeDetail
@@ -78,7 +78,7 @@ namespace CharcoalCompanion.Services
                 var entity =
                     ctx
                         .Recipes
-                        .Single(e => e.RecipeId == model.RecipeId && e.UserId == _userId);
+                        .Single(e => e.RecipeId == model.RecipeId && e.UserId == _userId && e.IsSaved == true);
 
                 entity.Name = model.Name;
                 entity.Directions = model.Directions;
@@ -97,11 +97,11 @@ namespace CharcoalCompanion.Services
                 var entity =
                     ctx
                         .Recipes
-                        .Single(e => e.RecipeId == id && e.UserId == _userId);
+                        .Single(e => e.RecipeId == id && e.UserId == _userId && e.IsSaved == true);
 
-                ctx.Recipes.Remove(entity);
+                entity.IsSaved = false;
 
-                return ctx.SaveChanges() >= 1;
+                return ctx.SaveChanges() == 1;
             }
         }
 

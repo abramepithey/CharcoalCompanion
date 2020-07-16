@@ -54,27 +54,43 @@ namespace CharcoalCompanion.MVC.Controllers
         public ActionResult Details(int id)
         {
             var service = CreateRecipeService();
-            var model = service.GetRecipeById(id);
+            try
+            {
+                var model = service.GetRecipeById(id);
 
-            return View(model);
+                return View(model);
+            }
+            catch (InvalidOperationException)
+            {
+                TempData["NoResult"] = "The Step could not be found.";
+                return RedirectToAction("Index");
+            }
         }
 
         // GET: Recipe/Update/{id}
         public ActionResult Edit(int id)
         {
             var service = CreateRecipeService();
-            var detail = service.GetRecipeById(id);
-            var model =
-                new RecipeUpdate
-                {
-                    RecipeId = detail.RecipeId,
-                    Name = detail.Name,
-                    Directions = detail.Directions,
-                    Ingredients = detail.Ingredients,
-                    Steps = detail.Steps,
-                    Plan = detail.Plan
-                };
-            return View(model);
+            try
+            {
+                var detail = service.GetRecipeById(id);
+                var model =
+                    new RecipeUpdate
+                    {
+                        RecipeId = detail.RecipeId,
+                        Name = detail.Name,
+                        Directions = detail.Directions,
+                        Ingredients = detail.Ingredients,
+                        Steps = detail.Steps,
+                        Plan = detail.Plan
+                    };
+                return View(model);
+            }
+            catch (InvalidOperationException)
+            {
+                TempData["NoResult"] = "The Step could not be found.";
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Recipe/Update/{id}
@@ -108,13 +124,21 @@ namespace CharcoalCompanion.MVC.Controllers
         public ActionResult Delete(int id)
         {
             var service = CreateRecipeService();
-            var model = service.GetRecipeById(id);
+            try
+            {
+                var model = service.GetRecipeById(id);
 
-            return View(model);
+                return View(model);
+            }
+            catch (InvalidOperationException)
+            {
+                TempData["NoResult"] = "The Step could not be found.";
+                return RedirectToAction("Index");
+            }
         }
 
-        // POST: Recipe/Delete/{id}
-        [HttpPost]
+        // PATCH: Recipe/Delete/{id}
+        [HttpPatch]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteRecipe(int id)

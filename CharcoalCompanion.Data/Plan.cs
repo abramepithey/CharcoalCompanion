@@ -14,7 +14,9 @@ namespace CharcoalCompanion.Data
     {
         [Key]
         public int PlanId { get; set; }
+
         public Guid UserId { get; set; }
+
         public string Title { get; set; }
 
         public virtual Step StepOne { get; set; }
@@ -23,7 +25,7 @@ namespace CharcoalCompanion.Data
 
         public virtual Step StepThree { get; set; }
 
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool IsSaved { get; set; }
 
         public virtual ICollection<Recipe> Recipes { get; set; }

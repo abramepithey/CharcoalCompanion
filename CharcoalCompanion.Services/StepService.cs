@@ -38,6 +38,7 @@ namespace CharcoalCompanion.Services
                 var query =
                     ctx
                         .Steps
+                        .Where(e => e.IsSaved == true)
                         .Select(
                             e =>
                                 new StepListItem
@@ -65,7 +66,7 @@ namespace CharcoalCompanion.Services
                 var entity =
                     ctx
                         .Steps
-                        .Single(e => e.StepId == id);
+                        .Single(e => e.StepId == id && e.IsSaved == true);
                 return
                     new StepDetail
                     {
@@ -85,7 +86,7 @@ namespace CharcoalCompanion.Services
                 var entity =
                     ctx
                         .Steps
-                        .Single(e => e.StepId == model.StepId);
+                        .Single(e => e.StepId == model.StepId && e.UserId == _userId);
 
                 entity.StepType = model.StepType;
                 entity.Name = model.Name;
@@ -105,7 +106,7 @@ namespace CharcoalCompanion.Services
                         .Steps
                         .Single(e => e.StepId == id);
 
-                ctx.Steps.Remove(entity);
+                entity.IsSaved = false;
 
                 return ctx.SaveChanges() == 1;
             }
