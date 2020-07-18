@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit Step";
 }
 
-<h2>Edit</h2>
+<h2>Edit a Plan</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>StepUpdate</h4>
+        <p>Make any changes you need to the Step, or even overhaul it entirely!</p>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.StepId)

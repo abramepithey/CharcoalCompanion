@@ -4,7 +4,7 @@
     ViewBag.Title = "Create Plan";
 }
 
-<h2>Create Plan</h2>
+<h2>Create a Plan</h2>
 
 
 @using (Html.BeginForm("Create", "Plan"))
@@ -12,55 +12,55 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Create a Plan!</h4>
+        <p>Select one of each of these steps and we will put it all together for you!</p>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.StepOneId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-group form-row">
+            @Html.LabelFor(model => model.StepOneId, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
                 @foreach (var step in Model.Meats)
                 {
-                    <div>
-                        @Html.DisplayFor(modelItem => step.Name)
-                        @Html.RadioButtonFor(model => model.StepOneId, step.StepId, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="form-check">
+                        @Html.RadioButtonFor(model => model.StepOneId, step.StepId, new { htmlAttributes = new { @class = "form-control", id = step.Name } })
+                        @Html.Label(step.Name, new { @class = "form-check-label", @for = step.Name })
                     </div>
                 }
                 @Html.ValidationMessageFor(model => model.StepOneId, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.StepTwoId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <hr />
+        <div class="form-group form-row">
+            @Html.LabelFor(model => model.StepTwoId, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
                 @foreach (var step in Model.Cuts)
                 {
-                    <div>
-                        @Html.Label(step.Name)
-                        @Html.RadioButtonFor(model => model.StepTwoId, step.StepId, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="form-check">
+                        @Html.RadioButtonFor(model => model.StepTwoId, step.StepId, new { htmlAttributes = new { @class = "form-control", id = step.Name } })
+                        @Html.Label(step.Name, new { @class = "form-check-label", @for = step.Name })
                     </div>
                 }
                 @Html.ValidationMessageFor(model => model.StepTwoId, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.StepThreeId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <hr />
+        <div class="form-group form-row">
+            @Html.LabelFor(model => model.StepThreeId, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
                 @foreach (var step in Model.CharcoalSetups)
                 {
-                    <div>
-                        @Html.Label(step.Name)
-                        @Html.RadioButtonFor(model => model.StepThreeId, step.StepId, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="form-check">
+                        @Html.RadioButtonFor(model => model.StepThreeId, step.StepId, new { htmlAttributes = new { @class = "form-control", id = step.Name } })
+                        @Html.Label(step.Name, new { @class = "form-check-label", @for = step.Name })
                     </div>
                 }
                 @Html.ValidationMessageFor(model => model.StepThreeId, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <hr />
+        <div class="form-group form-row">
+            <div class="col-md-offset-2 col-sm-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </div>
     </div>
