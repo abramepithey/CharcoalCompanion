@@ -43,7 +43,7 @@ namespace CharcoalCompanion.MVC.Controllers
 
             if (service.CreateStep(model))
             {
-                TempData["SaveResult"] = "Your note was created.";
+                TempData["SaveResult"] = "Your Step was created.";
                 return RedirectToAction("Index");
             }
 
@@ -54,26 +54,41 @@ namespace CharcoalCompanion.MVC.Controllers
         public ActionResult Details(int id)
         {
             var service = CreateStepService();
-            var model = service.GetStepById(id);
+            try
+            {
+                var model = service.GetStepById(id);
 
-            return View(model);
+                return View(model);
+            }
+            catch (InvalidOperationException)
+            {
+                TempData["NoResult"] = "The Step could not be found.";
+                return RedirectToAction("Index");
+            }
         }
 
         // GET: Step/Edit/{id}
         public ActionResult Edit(int id)
         {
             var service = CreateStepService();
-            var detail = service.GetStepById(id);
-            var model =
-                new StepUpdate
-                {
-                    StepId = detail.StepId,
-                    StepType = detail.StepType,
-                    Name = detail.Name,
-                    Description = detail.Description,
-                    ImageLink = detail.ImageLink
-                };
-            return View(model);
+            try
+            {
+                var detail = service.GetStepById(id);
+                var model =
+                    new StepUpdate
+                    {
+                        StepId = detail.StepId,
+                        Name = detail.Name,
+                        Description = detail.Description,
+                        ImageLink = detail.ImageLink
+                    };
+                return View(model);
+            }
+            catch (InvalidOperationException)
+            {
+                TempData["NoResult"] = "The Step could not be found.";
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Step/Update/{id}
@@ -107,12 +122,20 @@ namespace CharcoalCompanion.MVC.Controllers
         public ActionResult Delete(int id)
         {
             var service = CreateStepService();
-            var model = service.GetStepById(id);
+            try
+            {
+                var model = service.GetStepById(id);
 
-            return View(model);
+                return View(model);
+            }
+            catch (InvalidOperationException)
+            {
+                TempData["NoResult"] = "The Step could not be found.";
+                return RedirectToAction("Index");
+            }
         }
 
-        // POST: Step/Delete/{id}
+        // PATCH: Step/Delete/{id}
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -15,13 +15,14 @@ namespace CharcoalCompanion.Services
     {
         public bool CreateStep(StepCreate model)
         {
-            var entity = new Step()
+            var entity = new Step
             {
                 UserId = _userId,
                 StepType = model.StepType,
                 Name = model.Name,
                 Description = model.Description,
-                ImageLink = model.ImageLink
+                ImageLink = model.ImageLink,
+                IsSaved = true
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -38,6 +39,7 @@ namespace CharcoalCompanion.Services
                 var query =
                     ctx
                         .Steps
+                        .Where(e => e.IsSaved == true)
                         .Select(
                             e =>
                                 new StepListItem
@@ -65,7 +67,7 @@ namespace CharcoalCompanion.Services
                 var entity =
                     ctx
                         .Steps
-                        .Single(e => e.StepId == id);
+                        .Single(e => e.StepId == id && e.IsSaved == true);
                 return
                     new StepDetail
                     {
@@ -85,9 +87,8 @@ namespace CharcoalCompanion.Services
                 var entity =
                     ctx
                         .Steps
-                        .Single(e => e.StepId == model.StepId);
+                        .Single(e => e.StepId == model.StepId && e.UserId == _userId);
 
-                entity.StepType = model.StepType;
                 entity.Name = model.Name;
                 entity.Description = model.Description;
                 entity.ImageLink = model.ImageLink;
@@ -105,7 +106,7 @@ namespace CharcoalCompanion.Services
                         .Steps
                         .Single(e => e.StepId == id);
 
-                ctx.Steps.Remove(entity);
+                entity.IsSaved = false;
 
                 return ctx.SaveChanges() == 1;
             }

@@ -4,58 +4,53 @@
     ViewBag.Title = "Plan Details";
 }
 
-<h2>Details</h2>
+<h2>Plan Details</h2>
 
 <div>
-    <h4>PlanDetail</h4>
+    <p>Check out the details of this Plan!</p>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <dl class="row">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.PlanId)
         </dt>
 
-        <dd>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.PlanId)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+        @if (Model.Title != null)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+        }
 
-        <dt>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.StepOne)
         </dt>
 
-        <dd>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.StepOne.Name)
         </dd>
 
-        <dt>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.StepTwo)
         </dt>
 
-        <dd>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.StepTwo.Name)
         </dd>
 
-        <dt>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.StepThree)
         </dt>
 
-        <dd>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.StepThree.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsSaved)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsSaved)
         </dd>
 
     </dl>

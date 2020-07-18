@@ -7,13 +7,13 @@ namespace CharcoalCompanion.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class initCreate : IMigrationMetadata
+    public sealed partial class firstInit : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(firstInit));
         
         string IMigrationMetadata.Id
         {
-            get { return "202007031705003_initCreate"; }
+            get { return "202007171819043_firstInit"; }
         }
         
         string IMigrationMetadata.Source

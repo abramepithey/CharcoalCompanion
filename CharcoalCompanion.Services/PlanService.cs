@@ -34,9 +34,11 @@ namespace CharcoalCompanion.Services
                 var entity = new Plan
                 {
                     UserId = _userId,
+                    Title = model.Title,
                     StepOne = stepOne,
                     StepTwo = stepTwo,
-                    StepThree = stepThree
+                    StepThree = stepThree,
+                    IsSaved = true
                 };
 
                 ctx.Plans.Add(entity);
@@ -51,7 +53,7 @@ namespace CharcoalCompanion.Services
                 var query =
                     ctx
                         .Plans
-                        .Where(e => /*e.IsSaved == true &&*/ e.UserId == _userId)
+                        .Where(e => e.IsSaved == true && e.UserId == _userId)
                         .Select(e =>
                             new PlanListItem
                             {
@@ -70,7 +72,7 @@ namespace CharcoalCompanion.Services
                 var query =
                     ctx
                         .Plans
-                        .Single(e => e.PlanId == id/* && e.IsSaved == true*/);
+                        .Single(e => e.PlanId == id && e.IsSaved == true);
 
                 return
                     new PlanDetail
@@ -79,8 +81,7 @@ namespace CharcoalCompanion.Services
                         Title = query.Title,
                         StepOne = query.StepOne,
                         StepTwo = query.StepTwo,
-                        StepThree = query.StepThree,
-                        IsSaved = query.IsSaved
+                        StepThree = query.StepThree
                     };
             }
         }
@@ -109,7 +110,6 @@ namespace CharcoalCompanion.Services
                         .Steps
                         .Single(o => o.StepId == model.StepThreeId);
 
-                entity.IsSaved = model.IsSaved;
                 entity.Title = model.Title;
                 entity.StepOne = stepOne;
                 entity.StepTwo = stepTwo;
@@ -126,6 +126,7 @@ namespace CharcoalCompanion.Services
                 var query =
                     ctx
                         .Steps
+                        .Where(e => e.IsSaved == true)
                         .Select(e =>
                         new StepListItem
                         {
@@ -138,6 +139,11 @@ namespace CharcoalCompanion.Services
                 var Meats = query.Where(m => m.StepType == Data.Steps.StepTypes.Meat).ToList();
                 var Cuts = query.Where(m => m.StepType == Data.Steps.StepTypes.Cut).ToList();
                 var CharcoalSetups = query.Where(m => m.StepType == Data.Steps.StepTypes.CharcoalSetup).ToList();
+
+                if (Meats.Count == 0 || Cuts.Count == 0 || CharcoalSetups.Count == 0)
+                {
+                    throw new Exception();
+                }
 
                 model.Meats = Meats;
                 model.Cuts = Cuts;
@@ -154,6 +160,7 @@ namespace CharcoalCompanion.Services
                 var query =
                     ctx
                         .Steps
+                        .Where(e => e.IsSaved == true)
                         .Select(e =>
                         new StepListItem
                         {
@@ -167,6 +174,11 @@ namespace CharcoalCompanion.Services
                 var Cuts = query.Where(m => m.StepType == Data.Steps.StepTypes.Cut).ToList();
                 var CharcoalSetups = query.Where(m => m.StepType == Data.Steps.StepTypes.CharcoalSetup).ToList();
 
+                if (Meats.Count == 0 || Cuts.Count == 0 || CharcoalSetups.Count == 0)
+                {
+                    throw new Exception();
+                }
+
                 model.Meats = Meats;
                 model.Cuts = Cuts;
                 model.CharcoalSetups = CharcoalSetups;
@@ -175,7 +187,7 @@ namespace CharcoalCompanion.Services
             return model;
         }
 
-        public bool SavePlan(PlanSave model)
+        public bool FavoritePlan(PlanSave model)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -198,11 +210,11 @@ namespace CharcoalCompanion.Services
                 var entity =
                     ctx
                         .Plans
-                        .Single(e => e.PlanId == id/* && e.UserId == _userId*/);
+                        .Single(e => e.PlanId == id && e.UserId == _userId);
 
-                ctx.Plans.Remove(entity);
+                entity.IsSaved = false;
 
-                return ctx.SaveChanges() >= 1;
+                return ctx.SaveChanges() == 1;
             }
         }
 

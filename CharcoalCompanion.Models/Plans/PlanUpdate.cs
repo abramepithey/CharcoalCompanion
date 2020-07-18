@@ -14,16 +14,15 @@ namespace CharcoalCompanion.Models.Plans
         public int PlanId { get; set; }
         public string Title { get; set; }
 
-        [Display(Name = "Meat:")]
+        [Display(Name = "Meat")]
         public int StepOneId { get; set; }
 
-        [Display(Name = "Cut:")]
+        [Display(Name = "Cut")]
         public int StepTwoId { get; set; }
 
-        [Display(Name = "Charcoal Setup:")]
+        [Display(Name = "Charcoal Setup")]
         public int StepThreeId { get; set; }
 
-        public bool IsSaved { get; set; }
         public IEnumerable<StepListItem> Meats { get; set; }
         public IEnumerable<StepListItem> Cuts { get; set; }
         public IEnumerable<StepListItem> CharcoalSetups { get; set; }

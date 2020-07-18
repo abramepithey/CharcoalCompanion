@@ -23,9 +23,9 @@ namespace CharcoalCompanion.Data
 
         public string Steps { get; set; }
 
-        public virtual Plan Plan { get; set; }
-
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool IsSaved { get; set; }
+
+        public virtual Plan Plan { get; set; }
     }
 }
