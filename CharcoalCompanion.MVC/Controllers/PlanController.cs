@@ -74,7 +74,7 @@ namespace CharcoalCompanion.MVC.Controllers
             }
             catch (InvalidOperationException)
             {
-                TempData["NoResult"] = "The Step could not be found.";
+                TempData["NoResult"] = "The Plan could not be found.";
                 return RedirectToAction("Index");
             }
         }
@@ -155,7 +155,7 @@ namespace CharcoalCompanion.MVC.Controllers
         }
 
         // PATCH: Plan/Delete/{id}
-        [HttpPatch]
+        [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeletePlan(int id)

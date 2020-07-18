@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -26,7 +27,10 @@ namespace CharcoalCompanion.MVC.Controllers
         // GET: Recipe/Create
         public ActionResult Create()
         {
-            return View();
+            var service = CreateRecipeService();
+            var model = new RecipeCreate();
+            service.CreateRecipeModelLoadPlans(model);
+            return View(model);
         }
 
         // POST: Recipe/Create
@@ -34,20 +38,20 @@ namespace CharcoalCompanion.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(RecipeCreate model)
         {
+            var service = CreateRecipeService();
+
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View(service.CreateRecipeModelLoadPlans(model));
             }
-
-            var service = CreateRecipeService();
 
             if (service.CreateRecipe(model))
             {
-                TempData["SaveResult"] = "Your note was created.";
+                TempData["SaveResult"] = "Your Recipe was created.";
                 return RedirectToAction("Index");
             }
 
-            return View(model);
+            return View(service.CreateRecipeModelLoadPlans(model));
         }
 
         // GET: Recipe/Details/{id}
@@ -62,7 +66,7 @@ namespace CharcoalCompanion.MVC.Controllers
             }
             catch (InvalidOperationException)
             {
-                TempData["NoResult"] = "The Step could not be found.";
+                TempData["NoResult"] = "The Recipe could not be found.";
                 return RedirectToAction("Index");
             }
         }
@@ -82,13 +86,13 @@ namespace CharcoalCompanion.MVC.Controllers
                         Directions = detail.Directions,
                         Ingredients = detail.Ingredients,
                         Steps = detail.Steps,
-                        Plan = detail.Plan
+                        PlanId = detail.Plan.PlanId
                     };
                 return View(model);
             }
             catch (InvalidOperationException)
             {
-                TempData["NoResult"] = "The Step could not be found.";
+                TempData["NoResult"] = "The Recipe could not be found.";
                 return RedirectToAction("Index");
             }
         }
@@ -98,25 +102,25 @@ namespace CharcoalCompanion.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, RecipeUpdate model)
         {
+            var service = CreateRecipeService();
+
             if (!ModelState.IsValid)
-                return View(model);
+                return View(service.UpdateRecipeModelLoadPlans(model));
 
             if (model.RecipeId != id)
             {
                 ModelState.AddModelError("", "ID Mismatch");
-                return View(model);
+                return View(service.UpdateRecipeModelLoadPlans(model));
             }
-
-            var service = CreateRecipeService();
 
             if (service.UpdateRecipe(model))
             {
-                TempData["SaveResult"] = "Your Step was updated.";
+                TempData["SaveResult"] = "Your Recipe was updated.";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Your Step could not be updated.");
-            return View(model);
+            ModelState.AddModelError("", "Your Recipe could not be updated.");
+            return View(service.UpdateRecipeModelLoadPlans(model));
         }
 
         // GET: Recipe/Delete/{id}
@@ -132,22 +136,23 @@ namespace CharcoalCompanion.MVC.Controllers
             }
             catch (InvalidOperationException)
             {
-                TempData["NoResult"] = "The Step could not be found.";
+                TempData["NoResult"] = "The Recipe could not be found.";
                 return RedirectToAction("Index");
             }
         }
 
         // PATCH: Recipe/Delete/{id}
-        [HttpPatch]
+        [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteRecipe(int id)
         {
             var service = CreateRecipeService();
 
-            service.DeleteRecipe(id);
-
-            TempData["SaveResult"] = "The Recipe was deleted.";
+            if (service.DeleteRecipe(id))
+            {
+                TempData["SaveResult"] = "The Recipe was deleted.";
+            }
 
             return RedirectToAction("Index");
         }

@@ -15,13 +15,14 @@ namespace CharcoalCompanion.Services
     {
         public bool CreateStep(StepCreate model)
         {
-            var entity = new Step()
+            var entity = new Step
             {
                 UserId = _userId,
                 StepType = model.StepType,
                 Name = model.Name,
                 Description = model.Description,
-                ImageLink = model.ImageLink
+                ImageLink = model.ImageLink,
+                IsSaved = true
             };
 
             using (var ctx = new ApplicationDbContext())

@@ -58,25 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202007031705003_initCreate.cs" />
-    <Compile Include="Migrations\202007031705003_initCreate.designer.cs">
-      <DependentUpon>202007031705003_initCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007080210517_updatesPlans.cs" />
-    <Compile Include="Migrations\202007080210517_updatesPlans.designer.cs">
-      <DependentUpon>202007080210517_updatesPlans.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007140313408_addsRecipes.cs" />
-    <Compile Include="Migrations\202007140313408_addsRecipes.designer.cs">
-      <DependentUpon>202007140313408_addsRecipes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007141804319_fixesNavigations.cs" />
-    <Compile Include="Migrations\202007141804319_fixesNavigations.designer.cs">
-      <DependentUpon>202007141804319_fixesNavigations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007152337572_overhaulDelete.cs" />
-    <Compile Include="Migrations\202007152337572_overhaulDelete.designer.cs">
-      <DependentUpon>202007152337572_overhaulDelete.cs</DependentUpon>
+    <Compile Include="Migrations\202007171819043_firstInit.cs" />
+    <Compile Include="Migrations\202007171819043_firstInit.designer.cs">
+      <DependentUpon>202007171819043_firstInit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Plan.cs" />
@@ -89,20 +73,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007031705003_initCreate.resx">
-      <DependentUpon>202007031705003_initCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007080210517_updatesPlans.resx">
-      <DependentUpon>202007080210517_updatesPlans.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007140313408_addsRecipes.resx">
-      <DependentUpon>202007140313408_addsRecipes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007141804319_fixesNavigations.resx">
-      <DependentUpon>202007141804319_fixesNavigations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007152337572_overhaulDelete.resx">
-      <DependentUpon>202007152337572_overhaulDelete.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007171819043_firstInit.resx">
+      <DependentUpon>202007171819043_firstInit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

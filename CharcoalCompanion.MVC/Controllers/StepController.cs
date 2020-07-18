@@ -137,7 +137,7 @@ namespace CharcoalCompanion.MVC.Controllers
         }
 
         // PATCH: Step/Delete/{id}
-        [HttpPatch]
+        [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteStep(int id)

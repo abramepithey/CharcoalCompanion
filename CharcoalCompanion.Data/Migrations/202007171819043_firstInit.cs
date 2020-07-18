@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initCreate : DbMigration
+    public partial class firstInit : DbMigration
     {
         public override void Up()
         {
@@ -13,6 +13,7 @@
                     {
                         PlanId = c.Int(nullable: false, identity: true),
                         UserId = c.Guid(nullable: false),
+                        Title = c.String(),
                         IsSaved = c.Boolean(nullable: false),
                         Step_StepId = c.Int(),
                         StepOne_StepId = c.Int(nullable: false),
@@ -30,30 +31,35 @@
                 .Index(t => t.StepTwo_StepId);
             
             CreateTable(
+                "dbo.Recipe",
+                c => new
+                    {
+                        RecipeId = c.Int(nullable: false, identity: true),
+                        UserId = c.Guid(nullable: false),
+                        Name = c.String(),
+                        Directions = c.String(),
+                        Ingredients = c.String(),
+                        Steps = c.String(),
+                        IsSaved = c.Boolean(nullable: false),
+                        Plan_PlanId = c.Int(),
+                    })
+                .PrimaryKey(t => t.RecipeId)
+                .ForeignKey("dbo.Plan", t => t.Plan_PlanId)
+                .Index(t => t.Plan_PlanId);
+            
+            CreateTable(
                 "dbo.Step",
                 c => new
                     {
                         StepId = c.Int(nullable: false, identity: true),
                         StepType = c.Int(nullable: false),
-                        Name = c.String(nullable: false, maxLength: 30),
+                        Name = c.String(),
                         UserId = c.Guid(nullable: false),
-                        Description = c.String(maxLength: 100),
+                        Description = c.String(),
                         ImageLink = c.String(),
-                        IsActive = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.StepId);
-            
-            CreateTable(
-                "dbo.Recipe",
-                c => new
-                    {
-                        RecipeId = c.Int(nullable: false, identity: true),
-                        Directions = c.String(nullable: false, maxLength: 500),
-                        Ingredients = c.String(nullable: false, maxLength: 500),
-                        Steps = c.String(nullable: false, maxLength: 500),
                         IsSaved = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => t.RecipeId);
+                .PrimaryKey(t => t.StepId);
             
             CreateTable(
                 "dbo.IdentityRole",
@@ -137,10 +143,12 @@
             DropForeignKey("dbo.Plan", "StepThree_StepId", "dbo.Step");
             DropForeignKey("dbo.Plan", "StepOne_StepId", "dbo.Step");
             DropForeignKey("dbo.Plan", "Step_StepId", "dbo.Step");
+            DropForeignKey("dbo.Recipe", "Plan_PlanId", "dbo.Plan");
             DropIndex("dbo.IdentityUserLogin", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserClaim", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
+            DropIndex("dbo.Recipe", new[] { "Plan_PlanId" });
             DropIndex("dbo.Plan", new[] { "StepTwo_StepId" });
             DropIndex("dbo.Plan", new[] { "StepThree_StepId" });
             DropIndex("dbo.Plan", new[] { "StepOne_StepId" });
@@ -150,8 +158,8 @@
             DropTable("dbo.ApplicationUser");
             DropTable("dbo.IdentityUserRole");
             DropTable("dbo.IdentityRole");
-            DropTable("dbo.Recipe");
             DropTable("dbo.Step");
+            DropTable("dbo.Recipe");
             DropTable("dbo.Plan");
         }
     }

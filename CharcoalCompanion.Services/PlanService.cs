@@ -36,7 +36,8 @@ namespace CharcoalCompanion.Services
                     UserId = _userId,
                     StepOne = stepOne,
                     StepTwo = stepTwo,
-                    StepThree = stepThree
+                    StepThree = stepThree,
+                    IsSaved = true
                 };
 
                 ctx.Plans.Add(entity);

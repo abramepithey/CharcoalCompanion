@@ -1,8 +1,10 @@
 ﻿using CharcoalCompanion.Contracts;
 using CharcoalCompanion.Data;
+using CharcoalCompanion.Models.Plans;
 using CharcoalCompanion.Models.Recipes;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,18 +15,21 @@ namespace CharcoalCompanion.Services
     {
         public bool CreateRecipe(RecipeCreate model)
         {
-            var entity = new Recipe()
-            {
-                UserId = _userId,
-                Name = model.Name,
-                Ingredients = model.Ingredients,
-                Steps = model.Steps,
-                Directions = model.Directions,
-                Plan = model.Plan
-            };
-
             using (var ctx = new ApplicationDbContext())
             {
+                var plan = ConnectPlanToRecipe(model.PlanId);
+
+                var entity = new Recipe
+                {
+                    UserId = _userId,
+                    Name = model.Name,
+                    Ingredients = model.Ingredients,
+                    Steps = model.Steps,
+                    Directions = model.Directions,
+                    IsSaved = true,
+                    Plan = plan
+                };
+
                 ctx.Recipes.Add(entity);
                 return ctx.SaveChanges() >= 1;
             }
@@ -84,7 +89,7 @@ namespace CharcoalCompanion.Services
                 entity.Directions = model.Directions;
                 entity.Ingredients = model.Ingredients;
                 entity.Steps = model.Steps;
-                entity.Plan = model.Plan;
+                entity.Plan = ConnectPlanToRecipe(model.PlanId);
 
                 return ctx.SaveChanges() >= 1;
             }
@@ -102,6 +107,78 @@ namespace CharcoalCompanion.Services
                 entity.IsSaved = false;
 
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public RecipeCreate CreateRecipeModelLoadPlans(RecipeCreate model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Plans
+                        .Where(plan => plan.UserId == _userId && plan.IsSaved == true)
+                        .Select(plan =>
+                            new PlanListItem
+                            {
+                                PlanId = plan.PlanId,
+                                Title = plan.Title
+                            }).ToList();
+
+                if (query.Count == 0)
+                {
+                    throw new ObjectNotFoundException();
+                }
+
+                model.Plans = query;
+
+                return model;
+            }
+        }
+
+        public RecipeUpdate UpdateRecipeModelLoadPlans(RecipeUpdate model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Plans
+                        .Where(plan => plan.UserId == _userId && plan.IsSaved == true)
+                        .Select(plan =>
+                            new PlanListItem
+                            {
+                                PlanId = plan.PlanId,
+                                Title = plan.Title
+                            }).ToList();
+
+                if (query.Count == 0)
+                {
+                    throw new ObjectNotFoundException();
+                }
+
+                model.Plans = query;
+
+                return model;
+            }
+        }
+
+        public Plan ConnectPlanToRecipe(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                try
+                {
+                    var plan =
+                    ctx
+                        .Plans
+                        .Single(p => p.PlanId == id);
+
+                    return plan;
+                }
+                catch (InvalidOperationException)
+                {
+                    return null;
+                }
             }
         }
 
