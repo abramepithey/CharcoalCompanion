@@ -125,11 +125,6 @@ namespace CharcoalCompanion.Services
                                 Title = plan.Title
                             }).ToList();
 
-                if (query.Count == 0)
-                {
-                    throw new ObjectNotFoundException();
-                }
-
                 model.Plans = query;
 
                 return model;
@@ -151,34 +146,27 @@ namespace CharcoalCompanion.Services
                                 Title = plan.Title
                             }).ToList();
 
-                if (query.Count == 0)
-                {
-                    throw new ObjectNotFoundException();
-                }
-
                 model.Plans = query;
 
                 return model;
             }
         }
 
-        public Plan ConnectPlanToRecipe(int id)
+        public Plan ConnectPlanToRecipe(int? id)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                try
+                if (id == null)
                 {
-                    var plan =
+                    return null;
+                }
+
+                var plan =
                     ctx
                         .Plans
                         .Single(p => p.PlanId == id);
 
-                    return plan;
-                }
-                catch (InvalidOperationException)
-                {
-                    return null;
-                }
+                return plan;
             }
         }
 

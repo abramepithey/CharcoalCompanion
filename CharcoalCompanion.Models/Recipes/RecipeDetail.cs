@@ -15,6 +15,5 @@ namespace CharcoalCompanion.Models.Recipes
         public string Ingredients { get; set; }
         public string Steps { get; set; }
         public virtual Plan Plan { get; set; }
-        public bool IsSaved { get; set; }
     }
 }

@@ -85,10 +85,9 @@ namespace CharcoalCompanion.MVC.Controllers
                         Name = detail.Name,
                         Directions = detail.Directions,
                         Ingredients = detail.Ingredients,
-                        Steps = detail.Steps,
-                        PlanId = detail.Plan.PlanId
+                        Steps = detail.Steps
                     };
-                return View(model);
+                return View(service.UpdateRecipeModelLoadPlans(model));
             }
             catch (InvalidOperationException)
             {

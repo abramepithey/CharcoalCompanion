@@ -28,7 +28,7 @@ namespace CharcoalCompanion.Models.Recipes
         public string Steps { get; set; }
 
         [Display(Name = "Connected Plan")]
-        public int PlanId { get; set; }
+        public int? PlanId { get; set; }
 
         public IEnumerable<PlanListItem> Plans { get; set; }
     }

@@ -57,8 +57,8 @@
                     @foreach (var plan in Model.Plans)
                     {
                         <div class="form-check">
-                            @Html.RadioButtonFor(model => model.PlanId, plan.PlanId, new { htmlAttributes = new { @class = "form-control", id = plan.Title } })
-                            @Html.Label(plan.Title, new { @class = "form-check-label", @for = plan.Title })
+                            @Html.RadioButtonFor(model => model.PlanId, plan.PlanId, new { htmlAttributes = new { @class = "form-control", id = ("Plan" + plan.PlanId) } })
+                            @Html.Label(plan.PlanId.ToString(), new { @class = "form-check-label", @for = ("Plan" + plan.PlanId) })
                         </div>
                     }
                     @Html.ValidationMessageFor(model => model.PlanId, "", new { @class = "text-danger" })
