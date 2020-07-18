@@ -78,7 +78,6 @@ namespace CharcoalCompanion.MVC.Controllers
                     new StepUpdate
                     {
                         StepId = detail.StepId,
-                        StepType = detail.StepType,
                         Name = detail.Name,
                         Description = detail.Description,
                         ImageLink = detail.ImageLink

@@ -12,9 +12,6 @@ namespace CharcoalCompanion.Models.Steps
     {
         public int StepId { get; set; }
 
-        [Display(Name = "Type of Step")]
-        public StepTypes StepType { get; set; }
-
         public string Name { get; set; }
 
         public string Description { get; set; }

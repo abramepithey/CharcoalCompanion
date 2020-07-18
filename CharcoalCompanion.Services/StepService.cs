@@ -89,7 +89,6 @@ namespace CharcoalCompanion.Services
                         .Steps
                         .Single(e => e.StepId == model.StepId && e.UserId == _userId);
 
-                entity.StepType = model.StepType;
                 entity.Name = model.Name;
                 entity.Description = model.Description;
                 entity.ImageLink = model.ImageLink;
