@@ -93,8 +93,7 @@ namespace CharcoalCompanion.MVC.Controllers
                         Title = detail.Title,
                         StepOneId = detail.StepOne.StepId,
                         StepTwoId = detail.StepTwo.StepId,
-                        StepThreeId = detail.StepThree.StepId,
-                        IsSaved = detail.IsSaved
+                        StepThreeId = detail.StepThree.StepId
                     };
                 return View(service.UpdateModelLoadSteps(model));
             }

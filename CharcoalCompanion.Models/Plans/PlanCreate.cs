@@ -11,6 +11,8 @@ namespace CharcoalCompanion.Models.Plans
 {
     public class PlanCreate
     {
+        public string Title { get; set; }
+
         [Required]
         [Display(Name = "Meat")]
         public int StepOneId { get; set; }

@@ -34,6 +34,7 @@ namespace CharcoalCompanion.Services
                 var entity = new Plan
                 {
                     UserId = _userId,
+                    Title = model.Title,
                     StepOne = stepOne,
                     StepTwo = stepTwo,
                     StepThree = stepThree,
@@ -80,8 +81,7 @@ namespace CharcoalCompanion.Services
                         Title = query.Title,
                         StepOne = query.StepOne,
                         StepTwo = query.StepTwo,
-                        StepThree = query.StepThree,
-                        IsSaved = query.IsSaved
+                        StepThree = query.StepThree
                     };
             }
         }
@@ -110,7 +110,6 @@ namespace CharcoalCompanion.Services
                         .Steps
                         .Single(o => o.StepId == model.StepThreeId);
 
-                entity.IsSaved = model.IsSaved;
                 entity.Title = model.Title;
                 entity.StepOne = stepOne;
                 entity.StepTwo = stepTwo;

@@ -19,8 +19,5 @@ namespace CharcoalCompanion.Models.Plans
         public virtual Step StepTwo { get; set; }
         [Display(Name = "Charcoal Setup")]
         public virtual Step StepThree { get; set; }
-
-        [Display(Name = "Is this saved?")]
-        public bool IsSaved { get; set; }
     }
 }
