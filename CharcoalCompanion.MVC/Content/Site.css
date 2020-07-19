@@ -22,3 +22,67 @@ select,
 textarea {
     max-width: 280px;
 }*/
+
+.btn-primary {
+    background-color: #668ca1;
+    border-color: #668ca1;
+}
+
+.btn-primary:hover {
+    background-color: #80b0ca;
+    border-color: #80b0ca;
+}
+
+.image {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-bottom: 100%;
+}
+
+.image img {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 150%;
+    max-height: 150%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 1;
+    transition: opacity 0.2s linear;
+    -moz-transition: opacity 0.2s linear;
+}
+
+.projectText {
+    position: absolute;
+    visibility: hidden;
+    z-index: 1000;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 0;
+    transition: visibility 0s linear 0.3s, opacity 0.3s linear;
+    -moz-transition: visibility 0s linear 0.3s, opacity 0.3s linear;
+}
+
+.projectVisibleText {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.hoverContainer:hover > .image img {
+    opacity: 0.2;
+    transition-delay: 0ms;
+}
+
+.hoverContainer:hover > .projectText {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0ms;
+}

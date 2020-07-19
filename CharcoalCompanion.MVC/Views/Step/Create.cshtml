@@ -34,7 +34,8 @@
         <div class="form-group form-row">
             @Html.LabelFor(model => model.ImageLink, htmlAttributes: new { @class = "col-form-label col-sm-2" })
             <div class="col-sm-10">
-                @Html.EditorFor(model => model.ImageLink, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ImageLink, new { htmlAttributes = new { @class = "form-control", aria_describedby = "linkHelp" } })
+                <small id="linkHelp" class="form-text text-muted">Leave empty if you do not have a link yet, you can add one later</small>
                 @Html.ValidationMessageFor(model => model.ImageLink, "", new { @class = "text-danger" })
             </div>
         </div>
