@@ -22,6 +22,8 @@ namespace CharcoalCompanion.Data.Steps
 
         public string Description { get; set; }
 
+        public string FinalPageDetail { get; set; }
+
         public string ImageLink { get; set; }
 
         [DefaultValue(true)]

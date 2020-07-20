@@ -21,6 +21,9 @@ namespace CharcoalCompanion.Models.Steps
         [MaxLength(100)]
         public string Description { get; set; }
 
+        [MaxLength(200)]
+        public string FinalPageDetail { get; set; }
+
         [Display(Name = "Image Link")]
         public string ImageLink { get; set; }
     }

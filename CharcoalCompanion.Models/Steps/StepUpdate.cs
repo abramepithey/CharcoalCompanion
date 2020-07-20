@@ -16,6 +16,10 @@ namespace CharcoalCompanion.Models.Steps
 
         public string Description { get; set; }
 
+        [Display(Name = "Information for Final Page")]
+        public string FinalPageDetail { get; set; }
+
+        [Display(Name = "Image Link")]
         public string ImageLink { get; set; }
     }
 }
