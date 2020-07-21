@@ -40,6 +40,10 @@ textarea {
     padding-bottom: 100%;
 }
 
+.missingImageBackground {
+    background-color: #c3dceb;
+}
+
 .image img {
     position: absolute;
     min-width: 100%;

@@ -32,14 +32,14 @@ else if (TempData.ContainsKey("NoResult"))
     </div>
 }
 <hr />
-<h4 class="mb-3">Meats</h4>
+<h4 class="mb-0">Meats</h4>
 
 <div class="row">
     @foreach (var item in meats)
     {
-        if (item.ImageLink != "" && item.ImageLink != null)
+        if (item.ImageLink != null)
         {
-            <div class="col-lg-4 col-sm-6 hoverContainer">
+            <div class="col-lg-4 col-sm-6 my-3 hoverContainer">
                 <div class="image">
                     <img src="@Url.Content(item.ImageLink)" class="img img-responsive full-width" alt="@Html.DisplayFor(modelItem => item.ImageLink)">
                 </div>
@@ -53,8 +53,9 @@ else if (TempData.ContainsKey("NoResult"))
         }
         else
         {
-            <div class="col-lg-4 col-sm-6">
-                <div class="card-body text-center projectText">
+            <div class="col-lg-4 col-sm-6 my-3">
+                <div class="image missingImageBackground"></div>
+                <div class="card-body text-center projectVisibleText">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
                     @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                     @Html.ActionLink("Details", "Details", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
@@ -64,15 +65,15 @@ else if (TempData.ContainsKey("NoResult"))
         }
     }
 </div>
-<hr />
-<h4 class="mb-3">Cuts</h4>
+<hr class="mt-0" />
+<h4 class="mb-0">Cuts</h4>
 
 <div class="row">
     @foreach (var item in cuts)
     {
-        if (item.ImageLink != "" && item.ImageLink != null)
+        if (item.ImageLink != null)
         {
-            <div class="col-lg-4 col-sm-6 hoverContainer">
+            <div class="col-lg-4 col-sm-6 my-3 hoverContainer">
                 <div class="image">
                     <img src="@Url.Content(item.ImageLink)" class="img img-responsive full-width" alt="@Html.DisplayFor(modelItem => item.ImageLink)">
                 </div>
@@ -86,8 +87,9 @@ else if (TempData.ContainsKey("NoResult"))
         }
         else
         {
-            <div class="col-lg-4 col-sm-6">
-                <div class="card-body text-center projectText">
+            <div class="col-lg-4 col-sm-6 my-3">
+                <div class="image missingImageBackground"></div>
+                <div class="card-body text-center projectVisibleText">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
                     @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                     @Html.ActionLink("Details", "Details", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
@@ -97,15 +99,15 @@ else if (TempData.ContainsKey("NoResult"))
         }
     }
 </div>
-<hr />
-<h4 class="mb-3">Charcoal Setups</h4>
+<hr class="mt-0" />
+<h4 class="mb-0">Charcoal Setups</h4>
 
 <div class="row">
     @foreach (var item in charcoalSetups)
     {
-        if (item.ImageLink != "" && item.ImageLink != null)
+        if (item.ImageLink != null)
         {
-            <div class="col-lg-4 col-sm-6 hoverContainer">
+            <div class="col-lg-4 col-sm-6 my-3 hoverContainer">
                 <div class="image">
                     <img src="@Url.Content(item.ImageLink)" class="img img-responsive full-width" alt="@Html.DisplayFor(modelItem => item.ImageLink)">
                 </div>
@@ -119,9 +121,8 @@ else if (TempData.ContainsKey("NoResult"))
         }
         else
         {
-            <div class="col-lg-4 col-sm-6 hoverContainer">
-                <div class="image">
-                </div>
+            <div class="col-lg-4 col-sm-6 my-3 hoverContainer">
+                <div class="image missingImageBackground"></div>
                 <div class="card-body text-center projectVisibleText">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
                     @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
