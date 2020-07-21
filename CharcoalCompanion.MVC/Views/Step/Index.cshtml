@@ -2,12 +2,15 @@
 
 @{
     ViewBag.Title = "Steps";
+    var meats = Model.Where(step => step.StepType == CharcoalCompanion.Data.Steps.StepTypes.Meat);
+    var cuts = Model.Where(step => step.StepType == CharcoalCompanion.Data.Steps.StepTypes.Cut);
+    var charcoalSetups = Model.Where(step => step.StepType == CharcoalCompanion.Data.Steps.StepTypes.CharcoalSetup);
 }
 
 <h2>Step List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create a Step", "Create")
 </p>
 
 @if (TempData.ContainsKey("SaveResult"))
@@ -28,32 +31,105 @@ else if (TempData.ContainsKey("NoResult"))
         @TempData["NoResult"]
     </div>
 }
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageLink)
-        </th>
-        <th></th>
-    </tr>
+<hr />
+<h4 class="mb-0">Meats</h4>
 
-    @foreach (var item in Model)
+<div class="row">
+    @foreach (var item in meats)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageLink)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.StepId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.StepId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.StepId })
-            </td>
-        </tr>
+        if (item.ImageLink != null)
+        {
+            <div class="col-lg-4 col-sm-6 my-3 hoverContainer">
+                <div class="image">
+                    <img src="@Url.Content(item.ImageLink)" class="img img-responsive full-width" alt="@Html.DisplayFor(modelItem => item.ImageLink)">
+                </div>
+                <div class="card-body text-center projectText">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Details", "Details", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-lg-4 col-sm-6 my-3">
+                <div class="image missingImageBackground"></div>
+                <div class="card-body text-center projectVisibleText">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Details", "Details", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                </div>
+            </div>
+        }
     }
+</div>
+<hr class="mt-0" />
+<h4 class="mb-0">Cuts</h4>
 
-</table>
+<div class="row">
+    @foreach (var item in cuts)
+    {
+        if (item.ImageLink != null)
+        {
+            <div class="col-lg-4 col-sm-6 my-3 hoverContainer">
+                <div class="image">
+                    <img src="@Url.Content(item.ImageLink)" class="img img-responsive full-width" alt="@Html.DisplayFor(modelItem => item.ImageLink)">
+                </div>
+                <div class="card-body text-center projectText">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Details", "Details", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-lg-4 col-sm-6 my-3">
+                <div class="image missingImageBackground"></div>
+                <div class="card-body text-center projectVisibleText">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Details", "Details", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                </div>
+            </div>
+        }
+    }
+</div>
+<hr class="mt-0" />
+<h4 class="mb-0">Charcoal Setups</h4>
+
+<div class="row">
+    @foreach (var item in charcoalSetups)
+    {
+        if (item.ImageLink != null)
+        {
+            <div class="col-lg-4 col-sm-6 my-3 hoverContainer">
+                <div class="image">
+                    <img src="@Url.Content(item.ImageLink)" class="img img-responsive full-width" alt="@Html.DisplayFor(modelItem => item.ImageLink)">
+                </div>
+                <div class="card-body text-center projectText">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Details", "Details", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-lg-4 col-sm-6 my-3 hoverContainer">
+                <div class="image missingImageBackground"></div>
+                <div class="card-body text-center projectVisibleText">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Details", "Details", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                </div>
+            </div>
+        }
+    }
+</div>

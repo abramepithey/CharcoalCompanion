@@ -12,6 +12,7 @@ using System.Web.Services.Description;
 
 namespace CharcoalCompanion.MVC.Controllers
 {
+    [Authorize]
     public class PlanController : Controller
     {
         // GET: Plan

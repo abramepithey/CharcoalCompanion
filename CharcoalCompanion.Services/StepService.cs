@@ -21,6 +21,7 @@ namespace CharcoalCompanion.Services
                 StepType = model.StepType,
                 Name = model.Name,
                 Description = model.Description,
+                FinalPageDetail = model.FinalPageDetail,
                 ImageLink = model.ImageLink,
                 IsSaved = true
             };
@@ -47,6 +48,7 @@ namespace CharcoalCompanion.Services
                                     StepId = e.StepId,
                                     StepType = e.StepType,
                                     Name = e.Name,
+                                    Description = e.Description,
                                     ImageLink = e.ImageLink
                                 }
                         );
@@ -75,6 +77,7 @@ namespace CharcoalCompanion.Services
                         StepType = entity.StepType,
                         Name = entity.Name,
                         Description = entity.Description,
+                        FinalPageDetail = entity.FinalPageDetail,
                         ImageLink = entity.ImageLink
                     };
             }
@@ -91,6 +94,7 @@ namespace CharcoalCompanion.Services
 
                 entity.Name = model.Name;
                 entity.Description = model.Description;
+                entity.FinalPageDetail = model.FinalPageDetail;
                 entity.ImageLink = model.ImageLink;
 
                 return ctx.SaveChanges() == 1;
