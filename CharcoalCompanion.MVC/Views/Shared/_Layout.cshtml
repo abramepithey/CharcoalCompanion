@@ -28,6 +28,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             @Html.ActionLink("About", "About", "Home", null, new { @class = "dropdown-item" })
                             @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "dropdown-item" })
+                            <a class="dropdown-item" href="https://abramepithey.github.io">More Projects</a>
                         </div>
                     </li>
                 </ul>
@@ -35,10 +36,10 @@
             </div>
         </div>
     </div>
-    <div class="container body-content pt-md-3 pt-2">
+    <div class="container body-content pt-3">
         @RenderBody()
         <hr />
-        <footer>
+        <footer class="text-right">
             <p>&copy; @DateTime.Now.Year - Charcoal Champion</p>
         </footer>
     </div>

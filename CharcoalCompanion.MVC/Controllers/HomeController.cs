@@ -22,7 +22,7 @@ namespace CharcoalCompanion.MVC.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Get in contact with me!";
 
             return View();
         }
