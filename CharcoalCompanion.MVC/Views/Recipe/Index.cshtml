@@ -7,7 +7,7 @@
 <h2>Recipes</h2>
 
 <p>
-    @Html.ActionLink("Create a Recipe", "Create")
+    @Html.ActionLink("Create a Recipe", "Create", "", new { @class = "btn btn-primary" })
 </p>
 
 @if (TempData.ContainsKey("SaveResult"))
@@ -49,9 +49,9 @@ else if (TempData.ContainsKey("NoResult"))
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.RecipeId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.RecipeId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.RecipeId })
+                @Html.ActionLink("Edit", "Edit", new { id = item.RecipeId }, new { @class = "btn btn-sm btn-secondary" })
+                @Html.ActionLink("Details", "Details", new { id = item.RecipeId }, new { @class = "btn btn-sm btn-secondary" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.RecipeId }, new { @class = "btn btn-sm btn-secondary" })
             </td>
         </tr>
     }

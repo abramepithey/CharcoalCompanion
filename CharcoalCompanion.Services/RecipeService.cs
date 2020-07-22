@@ -17,8 +17,6 @@ namespace CharcoalCompanion.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var plan = ConnectPlanToRecipe(model.PlanId);
-
                 var entity = new Recipe
                 {
                     UserId = _userId,
@@ -26,9 +24,13 @@ namespace CharcoalCompanion.Services
                     Ingredients = model.Ingredients,
                     Steps = model.Steps,
                     Directions = model.Directions,
-                    IsSaved = true,
-                    Plan = plan
+                    IsSaved = true
                 };
+
+                if (model.PlanId != null)
+                {
+                    entity.Plan = ctx.Plans.Single(p => p.PlanId == model.PlanId);
+                }
 
                 ctx.Recipes.Add(entity);
                 return ctx.SaveChanges() >= 1;
@@ -89,7 +91,10 @@ namespace CharcoalCompanion.Services
                 entity.Directions = model.Directions;
                 entity.Ingredients = model.Ingredients;
                 entity.Steps = model.Steps;
-                entity.Plan = ConnectPlanToRecipe(model.PlanId);
+                if (model.PlanId != null)
+                {
+                    entity.Plan = ctx.Plans.Single(p => p.PlanId == model.PlanId);
+                }
 
                 return ctx.SaveChanges() >= 1;
             }

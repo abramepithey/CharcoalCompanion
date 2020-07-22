@@ -50,16 +50,15 @@
         </div>
 
         <div class="form-group form-row">
-            <div class="col-md-offset-2 col-sm-10">
+            <div class="offset-md-2 col">
                 <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+            <div class="col my-auto text-right">
+                @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-sm btn-secondary"})
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
