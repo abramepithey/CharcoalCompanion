@@ -80,6 +80,23 @@ namespace CharcoalCompanion.MVC.Controllers
             }
         }
 
+        // GET: Plan/KeyPoints/{id}
+        public ActionResult KeyPoints(int id)
+        {
+            var service = CreatePlanService();
+            try
+            {
+                var model = service.GetPlanById(id);
+
+                return View(model);
+            }
+            catch (InvalidOperationException)
+            {
+                TempData["NoResult"] = "The Plan could not be found.";
+                return RedirectToAction("Index");
+            }
+        }
+
         // GET: Plan/Edit/{id}
         public ActionResult Edit(int id)
         {

@@ -1,0 +1,38 @@
+﻿@model CharcoalCompanion.Models.Plans.PlanDetail
+
+@{
+    ViewBag.Title = "Key Points";
+}
+<div>
+    <h2>Key Points</h2>
+    <hr />
+    <div class="row">
+        <div class="col text-center">
+            <h3>
+                @Html.DisplayFor(model => model.Title)
+            </h3>
+        </div>
+    </div>
+</div>
+@if (Model.StepOne.FinalPageDetail != "")
+{
+    <div class="row">
+        <p class="col">For @Model.StepOne.Name, @Model.StepOne.FinalPageDetail.ToString()</p>
+    </div>
+}
+@if (Model.StepTwo.FinalPageDetail != "")
+{
+    <div class="row">
+        <p class="col">For a @Model.StepTwo.Name, @Model.StepTwo.FinalPageDetail.ToString()</p>
+    </div>
+}
+@if (Model.StepThree.FinalPageDetail != "")
+{
+    <div class="row">
+        <p class="col">When using the @Model.StepThree.Name method, @Model.StepThree.FinalPageDetail.ToString()</p>
+    </div>
+}
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PlanId }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+</p>
