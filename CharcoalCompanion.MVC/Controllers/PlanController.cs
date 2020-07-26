@@ -12,18 +12,18 @@ using System.Web.Services.Description;
 
 namespace CharcoalCompanion.MVC.Controllers
 {
-    [Authorize]
     public class PlanController : Controller
     {
         // GET: Plan
         public ActionResult Index()
         {
-            var service = CreatePlanService();
+            var service = new PlanService();
             var model = service.GetAllPlans();
 
             return View(model);
         }
 
+        [Authorize]
         // GET: Plan/Create
         [HttpGet]
         public ActionResult Create()
@@ -42,6 +42,7 @@ namespace CharcoalCompanion.MVC.Controllers
             }
         }
 
+        [Authorize]
         // POST: Plan/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -66,7 +67,7 @@ namespace CharcoalCompanion.MVC.Controllers
         // GET: Plan/Details/{id}
         public ActionResult Details(int id)
         {
-            var service = CreatePlanService();
+            var service = new PlanService();
             try
             {
                 var model = service.GetPlanById(id);
@@ -83,7 +84,7 @@ namespace CharcoalCompanion.MVC.Controllers
         // GET: Plan/KeyPoints/{id}
         public ActionResult KeyPoints(int id)
         {
-            var service = CreatePlanService();
+            var service = new PlanService();
             try
             {
                 var model = service.GetPlanById(id);
@@ -97,6 +98,7 @@ namespace CharcoalCompanion.MVC.Controllers
             }
         }
 
+        [Authorize]
         // GET: Plan/Edit/{id}
         public ActionResult Edit(int id)
         {
@@ -127,6 +129,7 @@ namespace CharcoalCompanion.MVC.Controllers
             }
         }
 
+        [Authorize]
         // POST: Plan/Edit/{id}
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -153,6 +156,7 @@ namespace CharcoalCompanion.MVC.Controllers
             return View(service.UpdateModelLoadSteps(model));
         }
 
+        [Authorize]
         // GET: Plan/Delete/{id}
         [ActionName("Delete")]
         public ActionResult Delete(int id)
@@ -171,6 +175,7 @@ namespace CharcoalCompanion.MVC.Controllers
             }
         }
 
+        [Authorize]
         // PATCH: Plan/Delete/{id}
         [HttpPost]
         [ActionName("Delete")]

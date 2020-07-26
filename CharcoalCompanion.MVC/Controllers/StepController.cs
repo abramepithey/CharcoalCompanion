@@ -11,24 +11,25 @@ using System.Web.Services.Description;
 
 namespace CharcoalCompanion.MVC.Controllers
 {
-    [Authorize]
     public class StepController : Controller
     {
         // GET: Step
         public ActionResult Index()
         {
-            var service = CreateStepService();
+            var service = new StepService();
             var model = service.GetAllSteps();
 
             return View(model);
         }
 
+        [Authorize]
         // GET: Step/Create
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         // POST: Step/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -53,7 +54,7 @@ namespace CharcoalCompanion.MVC.Controllers
         // GET: Step/Details/{id}
         public ActionResult Details(int id)
         {
-            var service = CreateStepService();
+            var service = new StepService();
             try
             {
                 var model = service.GetStepById(id);
@@ -67,6 +68,7 @@ namespace CharcoalCompanion.MVC.Controllers
             }
         }
 
+        [Authorize]
         // GET: Step/Edit/{id}
         public ActionResult Edit(int id)
         {
@@ -91,6 +93,7 @@ namespace CharcoalCompanion.MVC.Controllers
             }
         }
 
+        [Authorize]
         // POST: Step/Update/{id}
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -117,6 +120,7 @@ namespace CharcoalCompanion.MVC.Controllers
             return View(model);
         }
 
+        [Authorize]
         // GET: Step/Delete/{id}
         [ActionName("Delete")]
         public ActionResult Delete(int id)
@@ -135,6 +139,7 @@ namespace CharcoalCompanion.MVC.Controllers
             }
         }
 
+        [Authorize]
         // PATCH: Step/Delete/{id}
         [HttpPost]
         [ActionName("Delete")]

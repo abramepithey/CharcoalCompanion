@@ -122,5 +122,7 @@ namespace CharcoalCompanion.Services
         {
             _userId = userId;
         }
+
+        public StepService() { }
     }
 }

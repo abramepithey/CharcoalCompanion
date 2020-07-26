@@ -17,10 +17,10 @@
             @Html.ActionLink("Charcoal Companion", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <div class="navbar-collapse collapse" id="navbarCollapse">
                 <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">@Html.ActionLink("Steps", "Index", "Step", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Plans", "Index", "Plan", null, new { @class = "nav-link" })</li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li class="nav-item">@Html.ActionLink("Steps", "Index", "Step", null, new { @class = "nav-link" })</li>
-                        <li class="nav-item">@Html.ActionLink("Plans", "Index", "Plan", null, new { @class = "nav-link" })</li>
                         <li class="nav-item">@Html.ActionLink("Recipes", "Index", "Recipe", null, new { @class = "nav-link" })</li>
                     }
                     <li class="nav-item dropdown">
