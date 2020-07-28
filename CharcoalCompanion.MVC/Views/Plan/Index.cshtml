@@ -7,7 +7,7 @@
 <h2>Saved Plans</h2>
 
 <p>
-    @Html.ActionLink("Create a Plan", "Create")
+    @Html.ActionLink("Create a Plan", "Create", "", new { @class = "btn btn-primary" })
 </p>
 
 @if (TempData.ContainsKey("SaveResult"))
@@ -37,32 +37,44 @@ else if (TempData.ContainsKey("NeedSteps"))
         @TempData["NeedSteps"]
     </div>
 }
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PlanId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+else if (TempData.ContainsKey("NotOwner"))
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["NotOwner"]
+    </div>
+}
+<div class="row mx-0">
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PlanId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.PlanId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.PlanId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.PlanId })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlanId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.ActionLink("Key Points", "KeyPoints", new { id = item.PlanId }, new { @class = "btn btn-sm btn-secondary" })
+                    @Html.ActionLink("Details", "Details", new { id = item.PlanId }, new { @class = "btn btn-sm btn-secondary" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PlanId }, new { @class = "btn btn-sm btn-secondary" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PlanId }, new { @class = "btn btn-sm btn-secondary" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

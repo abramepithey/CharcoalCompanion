@@ -15,14 +15,14 @@ namespace CharcoalCompanion.MVC.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Plan your grilling session!";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Get in contact with me!";
 
             return View();
         }

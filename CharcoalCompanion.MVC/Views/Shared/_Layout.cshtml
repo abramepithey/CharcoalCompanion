@@ -17,10 +17,10 @@
             @Html.ActionLink("Charcoal Companion", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <div class="navbar-collapse collapse" id="navbarCollapse">
                 <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">@Html.ActionLink("Steps", "Index", "Step", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Plans", "Index", "Plan", null, new { @class = "nav-link" })</li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li class="nav-item">@Html.ActionLink("Steps", "Index", "Step", null, new { @class = "nav-link" })</li>
-                        <li class="nav-item">@Html.ActionLink("Plans", "Index", "Plan", null, new { @class = "nav-link" })</li>
                         <li class="nav-item">@Html.ActionLink("Recipes", "Index", "Recipe", null, new { @class = "nav-link" })</li>
                     }
                     <li class="nav-item dropdown">
@@ -28,6 +28,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             @Html.ActionLink("About", "About", "Home", null, new { @class = "dropdown-item" })
                             @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "dropdown-item" })
+                            <a class="dropdown-item" href="https://abramepithey.github.io">More Projects</a>
                         </div>
                     </li>
                 </ul>
@@ -35,10 +36,10 @@
             </div>
         </div>
     </div>
-    <div class="container body-content pt-md-3 pt-2">
+    <div class="container body-content pt-3">
         @RenderBody()
         <hr />
-        <footer>
+        <footer class="text-right">
             <p>&copy; @DateTime.Now.Year - Charcoal Champion</p>
         </footer>
     </div>

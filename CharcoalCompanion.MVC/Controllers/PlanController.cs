@@ -12,19 +12,19 @@ using System.Web.Services.Description;
 
 namespace CharcoalCompanion.MVC.Controllers
 {
-    [Authorize]
     public class PlanController : Controller
     {
         // GET: Plan
         public ActionResult Index()
         {
-            var service = CreatePlanService();
+            var service = new PlanService();
             var model = service.GetAllPlans();
 
             return View(model);
         }
 
         // GET: Plan/Create
+        [Authorize]
         [HttpGet]
         public ActionResult Create()
         {
@@ -43,6 +43,7 @@ namespace CharcoalCompanion.MVC.Controllers
         }
 
         // POST: Plan/Create
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(PlanCreate model)
@@ -54,10 +55,12 @@ namespace CharcoalCompanion.MVC.Controllers
                 return View(service.CreateModelLoadSteps(model));
             }
 
-            if (service.CreatePlan(model))
+            int? newPlanId = service.CreatePlan(model);
+
+            if (newPlanId != null)
             {
                 TempData["SaveResult"] = "Your Plan was created.";
-                return RedirectToAction("Index");
+                return RedirectToAction("KeyPoints", new { id = newPlanId });
             }
 
             return View(service.CreateModelLoadSteps(model));
@@ -66,7 +69,24 @@ namespace CharcoalCompanion.MVC.Controllers
         // GET: Plan/Details/{id}
         public ActionResult Details(int id)
         {
-            var service = CreatePlanService();
+            var service = new PlanService();
+            try
+            {
+                var model = service.GetPlanById(id);
+
+                return View(model);
+            }
+            catch (InvalidOperationException)
+            {
+                TempData["NoResult"] = "The Plan could not be found.";
+                return RedirectToAction("Index");
+            }
+        }
+
+        // GET: Plan/KeyPoints/{id}
+        public ActionResult KeyPoints(int id)
+        {
+            var service = new PlanService();
             try
             {
                 var model = service.GetPlanById(id);
@@ -81,12 +101,13 @@ namespace CharcoalCompanion.MVC.Controllers
         }
 
         // GET: Plan/Edit/{id}
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var service = CreatePlanService();
             try
             {
-                var detail = service.GetPlanById(id);
+                var detail = service.GetOwnedPlanById(id);
                 var model =
                     new PlanUpdate
                     {
@@ -103,6 +124,11 @@ namespace CharcoalCompanion.MVC.Controllers
                 TempData["NoResult"] = "The Plan could not be found.";
                 return RedirectToAction("Index");
             }
+            catch (UnauthorizedAccessException)
+            {
+                TempData["NotOwner"] = "You can only Edit Plans that you created.";
+                return RedirectToAction("Index");
+            }
             catch (Exception)
             {
                 TempData["NeedSteps"] = "A Plan cannot be made if there are not at least one of each step.";
@@ -111,6 +137,7 @@ namespace CharcoalCompanion.MVC.Controllers
         }
 
         // POST: Plan/Edit/{id}
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, PlanUpdate model)
@@ -137,24 +164,31 @@ namespace CharcoalCompanion.MVC.Controllers
         }
 
         // GET: Plan/Delete/{id}
+        [Authorize]
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
             var service = CreatePlanService();
             try
             {
-                var model = service.GetPlanById(id);
+                var model = service.GetOwnedPlanById(id);
 
                 return View(model);
             }
             catch (InvalidOperationException)
             {
-                TempData["NoResult"] = "The Step could not be found.";
+                TempData["NoResult"] = "The Plan could not be found.";
+                return RedirectToAction("Index");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                TempData["NotOwner"] = "You can only Delete Plans that you created.";
                 return RedirectToAction("Index");
             }
         }
 
         // PATCH: Plan/Delete/{id}
+        [Authorize]
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]

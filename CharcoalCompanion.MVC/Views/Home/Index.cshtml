@@ -12,22 +12,20 @@
 
 <div class="row">
     <div class="col-md-4 text-center">
-        <h2>Getting started</h2>
+        <h2>Steps</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            Create new steps that can be used to make more plans!  With more steps, your ability to create new creations on the grill is so much easier.
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        @Html.ActionLink("Create a Step \u00BB", "Create", "Step", null, new { @class = "btn btn-primary" })
     </div>
     <div class="col-md-4 text-center">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>Recipes</h2>
+        <p>Record you favorite meal here, and share it with other people!  Connect a plan you like and store it all together in our system.</p>
+        @Html.ActionLink("Create a Recipe \u00BB", "Create", "Recipe", null, new { @class = "btn btn-primary" })
     </div>
     <div class="col-md-4 text-center">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>More Projects</h2>
+        <p>If you like what you see here, take a look at my other projects!  I have a lot of new things up frequently, so check back often.</p>
+        <p><a class="btn btn-primary" href="https://abramepithey.github.io/">See More Projects &raquo;</a></p>
     </div>
 </div>

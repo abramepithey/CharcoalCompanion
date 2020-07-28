@@ -28,8 +28,8 @@
         @Html.HiddenFor(model => model.PlanId)
 
         <div class="form-group form-row">
-            <h5 class="col-sm-2">@Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label" })</h5>
-            <div class="col-sm-10">
+            <h5 class="col-12">@Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label" })</h5>
+            <div class="col-12">
                 @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
@@ -41,10 +41,19 @@
                 <div class="row">
                     @foreach (var step in Model.Meats)
                     {
-                        <div class="col-lg-4 col-sm-6 text-center">
-                            <div class="image">
-                                <img src="@Url.Content(step.ImageLink)" class="img img-responsive full-width" alt="@Html.DisplayFor(modelItem => step.ImageLink)">
-                            </div>
+                        <div class="col-lg-3 col-md-4 col-6 text-center">
+                            @if (step.ImageLink != null)
+                            {
+                                <div class="image">
+                                    <img src="@Url.Content(step.ImageLink)" class="img img-responsive full-width" alt="@Html.DisplayFor(modelItem => step.ImageLink)">
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="image missingImageBackground">
+                                    <p class="projectVisibleText">No Image</p>
+                                </div>
+                            }
                             <div class="form-check form-check-inline">
                                 @Html.RadioButtonFor(model => model.StepOneId, step.StepId, new { @class = "form-check-input", id = step.Name })
                                 @Html.Label(step.Name, new { @class = "form-check-label", @for = step.Name })
@@ -62,10 +71,19 @@
                 <div class="row">
                     @foreach (var step in Model.Cuts)
                     {
-                        <div class="col-lg-4 col-sm-6 text-center">
-                            <div class="image">
-                                <img src="@Url.Content(step.ImageLink)" class="img img-responsive full-width" alt="@Html.DisplayFor(modelItem => step.ImageLink)">
-                            </div>
+                        <div class="col-lg-3 col-md-4 col-6 text-center">
+                            @if (step.ImageLink != null)
+                            {
+                                <div class="image">
+                                    <img src="@Url.Content(step.ImageLink)" class="img img-responsive full-width" alt="@Html.DisplayFor(modelItem => step.ImageLink)">
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="image missingImageBackground">
+                                    <p class="projectVisibleText">No Image</p>
+                                </div>
+                            }
                             <div class="form-check form-check-inline">
                                 @Html.RadioButtonFor(model => model.StepTwoId, step.StepId, new { @class = "form-check-input", id = step.Name })
                                 @Html.Label(step.Name, new { @class = "form-check-label", @for = step.Name })
@@ -83,10 +101,19 @@
                 <div class="row">
                     @foreach (var step in Model.CharcoalSetups)
                     {
-                        <div class="col-lg-4 col-sm-6 text-center">
-                            <div class="image">
-                                <img src="@Url.Content(step.ImageLink)" class="img img-responsive full-width" alt="@Html.DisplayFor(modelItem => step.ImageLink)">
-                            </div>
+                        <div class="col-lg-3 col-md-4 col-6 text-center">
+                            @if (step.ImageLink != null)
+                            {
+                                <div class="image">
+                                    <img src="@Url.Content(step.ImageLink)" class="img img-responsive full-width" alt="@Html.DisplayFor(modelItem => step.ImageLink)">
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="image missingImageBackground">
+                                    <p class="projectVisibleText">No Image</p>
+                                </div>
+                            }
                             <div class="form-check form-check-inline">
                                 @Html.RadioButtonFor(model => model.StepThreeId, step.StepId, new { @class = "form-check-input", id = step.Name })
                                 @Html.Label(step.Name, new { @class = "form-check-label", @for = step.Name })
@@ -99,13 +126,12 @@
         </div>
         <hr />
         <div class="form-group form-row">
-            <div class="col-md-offset-2 col-sm-10">
+            <div class="col">
                 <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+            <div class="col my-auto text-right">
+                @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-sm btn-secondary" })
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

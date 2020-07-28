@@ -11,25 +11,26 @@ using System.Web.Services.Description;
 
 namespace CharcoalCompanion.MVC.Controllers
 {
-    [Authorize]
     public class StepController : Controller
     {
         // GET: Step
         public ActionResult Index()
         {
-            var service = CreateStepService();
+            var service = new StepService();
             var model = service.GetAllSteps();
 
             return View(model);
         }
 
         // GET: Step/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Step/Create
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(StepCreate model)
@@ -53,7 +54,7 @@ namespace CharcoalCompanion.MVC.Controllers
         // GET: Step/Details/{id}
         public ActionResult Details(int id)
         {
-            var service = CreateStepService();
+            var service = new StepService();
             try
             {
                 var model = service.GetStepById(id);
@@ -68,6 +69,7 @@ namespace CharcoalCompanion.MVC.Controllers
         }
 
         // GET: Step/Edit/{id}
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var service = CreateStepService();
@@ -80,6 +82,7 @@ namespace CharcoalCompanion.MVC.Controllers
                         StepId = detail.StepId,
                         Name = detail.Name,
                         Description = detail.Description,
+                        FinalPageDetail = detail.FinalPageDetail,
                         ImageLink = detail.ImageLink
                     };
                 return View(model);
@@ -92,6 +95,7 @@ namespace CharcoalCompanion.MVC.Controllers
         }
 
         // POST: Step/Update/{id}
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, StepUpdate model)
@@ -118,13 +122,14 @@ namespace CharcoalCompanion.MVC.Controllers
         }
 
         // GET: Step/Delete/{id}
+        [Authorize]
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
             var service = CreateStepService();
             try
             {
-                var model = service.GetStepById(id);
+                var model = service.GetOwnedStepById(id);
 
                 return View(model);
             }
@@ -133,9 +138,15 @@ namespace CharcoalCompanion.MVC.Controllers
                 TempData["NoResult"] = "The Step could not be found.";
                 return RedirectToAction("Index");
             }
+            catch (UnauthorizedAccessException)
+            {
+                TempData["NotOwner"] = "You can only Delete Steps that you created.";
+                return RedirectToAction("Index");
+            }
         }
 
         // PATCH: Step/Delete/{id}
+        [Authorize]
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
