@@ -28,32 +28,34 @@ else if (TempData.ContainsKey("NoResult"))
         @TempData["NoResult"]
     </div>
 }
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RecipeId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="row mx-0">
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RecipeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.RecipeId }, new { @class = "btn btn-sm btn-secondary" })
-                @Html.ActionLink("Details", "Details", new { id = item.RecipeId }, new { @class = "btn btn-sm btn-secondary" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.RecipeId }, new { @class = "btn btn-sm btn-secondary" })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.RecipeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RecipeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.RecipeId }, new { @class = "btn btn-sm btn-secondary" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.RecipeId }, new { @class = "btn btn-sm btn-secondary" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.RecipeId }, new { @class = "btn btn-sm btn-secondary" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

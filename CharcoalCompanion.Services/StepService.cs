@@ -83,6 +83,33 @@ namespace CharcoalCompanion.Services
             }
         }
 
+        public StepDetail GetOwnedStepById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Steps
+                        .Single(e => e.StepId == id && e.IsSaved == true);
+
+                if (entity.UserId != _userId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                return
+                    new StepDetail
+                    {
+                        StepId = entity.StepId,
+                        StepType = entity.StepType,
+                        Name = entity.Name,
+                        Description = entity.Description,
+                        FinalPageDetail = entity.FinalPageDetail,
+                        ImageLink = entity.ImageLink
+                    };
+            }
+        }
+
         public bool UpdateStep(StepUpdate model)
         {
             using (var ctx = new ApplicationDbContext())
@@ -90,7 +117,7 @@ namespace CharcoalCompanion.Services
                 var entity =
                     ctx
                         .Steps
-                        .Single(e => e.StepId == model.StepId && e.UserId == _userId);
+                        .Single(e => e.StepId == model.StepId);
 
                 entity.Name = model.Name;
                 entity.Description = model.Description;

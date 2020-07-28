@@ -58,6 +58,7 @@
 <div class="row">
     <p class="col">
         @Html.ActionLink("Edit", "Edit", new { id = Model.PlanId }, new { @class = "btn btn-secondary" })
+        @Html.ActionLink("Key Points", "KeyPoints", new { id = Model.PlanId }, new { @class = "btn btn-secondary" })
     </p>
     <p class="col my-auto text-right">
         @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-sm btn-secondary" })

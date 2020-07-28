@@ -31,6 +31,15 @@ else if (TempData.ContainsKey("NoResult"))
         @TempData["NoResult"]
     </div>
 }
+else if (TempData.ContainsKey("NotOwner"))
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["NotOwner"]
+    </div>
+}
 <hr />
 <h4 class="mb-0">Meats</h4>
 
@@ -45,8 +54,8 @@ else if (TempData.ContainsKey("NoResult"))
                 </div>
                 <div class="card-body text-center projectText">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                     @Html.ActionLink("Details", "Details", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                     @Html.ActionLink("Delete", "Delete", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                 </div>
             </div>
@@ -57,8 +66,8 @@ else if (TempData.ContainsKey("NoResult"))
                 <div class="image missingImageBackground"></div>
                 <div class="card-body text-center projectVisibleText">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                     @Html.ActionLink("Details", "Details", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                     @Html.ActionLink("Delete", "Delete", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                 </div>
             </div>
@@ -79,8 +88,8 @@ else if (TempData.ContainsKey("NoResult"))
                 </div>
                 <div class="card-body text-center projectText">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                     @Html.ActionLink("Details", "Details", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                     @Html.ActionLink("Delete", "Delete", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                 </div>
             </div>
@@ -91,8 +100,8 @@ else if (TempData.ContainsKey("NoResult"))
                 <div class="image missingImageBackground"></div>
                 <div class="card-body text-center projectVisibleText">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                     @Html.ActionLink("Details", "Details", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                     @Html.ActionLink("Delete", "Delete", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                 </div>
             </div>
@@ -113,8 +122,8 @@ else if (TempData.ContainsKey("NoResult"))
                 </div>
                 <div class="card-body text-center projectText">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                     @Html.ActionLink("Details", "Details", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                     @Html.ActionLink("Delete", "Delete", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                 </div>
             </div>
@@ -125,8 +134,8 @@ else if (TempData.ContainsKey("NoResult"))
                 <div class="image missingImageBackground"></div>
                 <div class="card-body text-center projectVisibleText">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                     @Html.ActionLink("Details", "Details", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                     @Html.ActionLink("Delete", "Delete", new { id = item.StepId }, new { @class = "btn btn-primary btn-xl" })
                 </div>
             </div>

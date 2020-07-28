@@ -12,7 +12,7 @@ namespace CharcoalCompanion.Services
 {
     public class PlanService : IPlanService
     {
-        public bool CreatePlan(PlanCreate model)
+        public int? CreatePlan(PlanCreate model)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -42,7 +42,9 @@ namespace CharcoalCompanion.Services
                 };
 
                 ctx.Plans.Add(entity);
-                return ctx.SaveChanges() >= 1;
+                ctx.SaveChanges();
+
+                return entity.PlanId;
             }
         }
 
@@ -53,7 +55,7 @@ namespace CharcoalCompanion.Services
                 var query =
                     ctx
                         .Plans
-                        .Where(e => e.IsSaved == true && e.UserId == _userId)
+                        .Where(e => e.IsSaved == true)
                         .Select(e =>
                             new PlanListItem
                             {
@@ -73,6 +75,32 @@ namespace CharcoalCompanion.Services
                     ctx
                         .Plans
                         .Single(e => e.PlanId == id && e.IsSaved == true);
+
+                return
+                    new PlanDetail
+                    {
+                        PlanId = query.PlanId,
+                        Title = query.Title,
+                        StepOne = query.StepOne,
+                        StepTwo = query.StepTwo,
+                        StepThree = query.StepThree
+                    };
+            }
+        }
+
+        public PlanDetail GetOwnedPlanById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Plans
+                        .Single(e => e.PlanId == id && e.IsSaved == true);
+
+                if (query.UserId != _userId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
 
                 return
                     new PlanDetail
