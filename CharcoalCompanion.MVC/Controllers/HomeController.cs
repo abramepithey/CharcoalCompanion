@@ -15,7 +15,7 @@ namespace CharcoalCompanion.MVC.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Plan your grilling session!";
 
             return View();
         }
